@@ -1,3 +1,3 @@
 export default function Home() {
-  return <div>New Page!</div>;
+  return <div>MainPage</div>;
 }
