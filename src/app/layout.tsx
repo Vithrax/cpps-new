@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/navbar";
 import Breadcrumbs from "@/components/breadcrumbs";
+import { cn } from "@/lib/utils";
 
 const font = Inter({ subsets: ["latin"] });
 
@@ -20,13 +21,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={font.className}>
+      <body className={cn(font.className, "w-full min-h-screen")}>
         <Providers>
           <Navbar />
-          <Breadcrumbs />
-          <div className="w-full">
-            <div className="mx-auto max-w-7xl">{children}</div>
+
+          <div className="mx-auto max-w-7xl h-full">
+            <Breadcrumbs />
+            {children}
           </div>
+
           <Toaster />
         </Providers>
       </body>

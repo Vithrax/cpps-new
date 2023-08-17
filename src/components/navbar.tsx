@@ -10,8 +10,8 @@ const Navbar = async () => {
   const session = await getAuthSession(); // for RFC
 
   return (
-    <div className="top-0 border-b w-full">
-      <div className="items-center max-w-7xl mx-auto flex justify-between px-4 py-3">
+    <header className="top-0 border-b w-full">
+      <nav className="items-center max-w-7xl mx-auto flex justify-between px-4 py-3">
         <Link href="/">
           <Logo />
         </Link>
@@ -33,12 +33,14 @@ const Navbar = async () => {
           <ModeToggle />
         </div>
         {!session ? (
-          <Link href="/sign-in">Sign in</Link>
+          <Link className={buttonVariants()} href="/sign-in">
+            Sign in
+          </Link>
         ) : (
           <UserAccountNav user={session.user} />
         )}
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 };
 

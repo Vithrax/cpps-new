@@ -1,10 +1,19 @@
-import Text from "@/components/ui/text";
-import { FC } from "react";
+import { getAuthSession } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import SignUp from "@/components/sign-up";
 
-interface pageProps {}
+const Page = async () => {
+  const session = await getAuthSession();
 
-const page: FC<pageProps> = ({}) => {
-  return <Text variant="h1">Login</Text>;
+  if (session) {
+    return redirect("/");
+  }
+
+  return (
+    <div className="w-full grid place-items-center">
+      <SignUp />
+    </div>
+  );
 };
 
-export default page;
+export default Page;
