@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   DropdownMenu,
@@ -6,15 +6,15 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
   DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
-import UserAvatar from "@/components/user-avatar";
-import { User } from "next-auth";
-import { signOut } from "next-auth/react";
-import { FC } from "react";
-import Link from "next/link";
+} from '@/components/ui/dropdown-menu';
+import UserAvatar from '@/components/user-avatar';
+import { User } from 'next-auth';
+import { signOut } from 'next-auth/react';
+import { FC } from 'react';
+import Link from 'next/link';
 
 interface UserAccountNavProps {
-  user: Pick<User, "name" | "image" | "email">;
+  user: Pick<User, 'name' | 'image' | 'email'>;
 }
 
 type MenuLink = {
@@ -24,16 +24,12 @@ type MenuLink = {
 
 const navigation: MenuLink[] = [
   {
-    href: "/",
-    label: "Link1",
+    href: '/inquiry/new',
+    label: 'Open New Case',
   },
   {
-    href: "/",
-    label: "Link2",
-  },
-  {
-    href: "/",
-    label: "Link3",
+    href: '/proposal/new',
+    label: 'Create Proposal',
   },
 ];
 
@@ -60,6 +56,7 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
             )}
           </div>
         </div>
+
         <DropdownMenuSeparator />
         {navigation.map((item, index) => (
           <DropdownMenuItem key={index} asChild>
@@ -67,6 +64,7 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
           </DropdownMenuItem>
         ))}
         <DropdownMenuSeparator />
+
         <DropdownMenuItem
           onSelect={(event) => {
             event.preventDefault();
