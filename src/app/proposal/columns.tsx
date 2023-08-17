@@ -1,8 +1,9 @@
-'use client';
+"use client";
 
-import { ColumnDef } from '@tanstack/react-table';
-import { MoreHorizontal, ArrowUpDown } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { type BadgeVariants } from "@/components/ui/badge";
+import { ColumnDef } from "@tanstack/react-table";
+import { MoreHorizontal, ArrowUpDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,20 +11,22 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from "@/components/ui/dropdown-menu";
+import { Badge, badgeVariants } from "@/components/ui/badge";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type Payment = {
   id: string;
-  amount: number;
-  status: 'pending' | 'processing' | 'success' | 'failed';
+  status: "pending" | "approved" | "rejected" | "cancelled";
+  internalId: string;
+  externalId: string;
   email: string;
 };
 
 export const columns: ColumnDef<Payment>[] = [
   {
-    id: 'actions',
+    id: "actions",
     cell: ({ row }) => {
       const payment = row.original;
 
@@ -51,16 +54,41 @@ export const columns: ColumnDef<Payment>[] = [
     },
   },
   {
-    accessorKey: 'status',
-    header: 'Status',
+    accessorKey: "status",
+    header: "Status",
+    cell: ({ row }) => {
+      const payment = row.original;
+
+      let variant: BadgeVariants;
+      switch (payment.status) {
+        case "approved":
+          variant = "success";
+          break;
+        case "cancelled":
+          variant = "disabled";
+          break;
+        case "pending":
+          variant = "processing";
+          break;
+        case "rejected":
+          variant = "destructive";
+          break;
+      }
+
+      return (
+        <Badge variant={variant} className="mx-auto">
+          {payment.status}
+        </Badge>
+      );
+    },
   },
   {
-    accessorKey: 'email',
+    accessorKey: "email",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Email
           <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -69,13 +97,13 @@ export const columns: ColumnDef<Payment>[] = [
     },
   },
   {
-    accessorKey: 'amount',
+    accessorKey: "amount",
     header: () => <div className="text-right">Amount</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue('amount'));
-      const formatted = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
+      const amount = parseFloat(row.getValue("amount"));
+      const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
       }).format(amount);
 
       return <div className="text-right font-medium">{formatted}</div>;

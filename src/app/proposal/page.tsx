@@ -1,8 +1,6 @@
-import { Payment, columns } from './columns';
-import { DataTable } from './data-table';
-import { faker } from '@faker-js/faker';
-
-type TransactionType = 'pending' | 'processing' | 'success' | 'failed';
+import { Payment, columns } from "./columns";
+import { DataTable } from "./data-table";
+import { faker } from "@faker-js/faker";
 
 async function getData(amount: number = 50): Promise<Payment[]> {
   // Fetch data from your API here.
@@ -12,11 +10,11 @@ async function getData(amount: number = 50): Promise<Payment[]> {
     return {
       id: faker.string.uuid(),
       amount: faker.number.float({ min: 100, max: 9999 }),
-      status: faker.helpers.arrayElement<TransactionType>([
-        'failed',
-        'pending',
-        'processing',
-        'success',
+      status: faker.helpers.arrayElement<Payment["status"]>([
+        "approved",
+        "pending",
+        "cancelled",
+        "rejected",
       ]),
       email: faker.internet.email(),
     };

@@ -19,6 +19,10 @@ module.exports = {
       colors: {
         "brand-main": "#24405b",
         "brand-secondary": "#05cfcf",
+        success: "hsl(var(--success))",
+        warning: "hsl(var(--warning))",
+        processing: "hsl(var(--processing))",
+        cancelled: "hsl(var(--cancelled))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
