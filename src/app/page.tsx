@@ -1,4 +1,4 @@
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -6,9 +6,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { LucideMoveRight } from "lucide-react";
-import Link from "next/link";
+} from '@/components/ui/card';
+import { LucideMoveRight } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -27,7 +27,7 @@ export default function Home() {
       </Card>
       <Card>
         <CardHeader>
-          <CardTitle>Inquiries</CardTitle>
+          <CardTitle>Cases</CardTitle>
           <CardDescription>
             Check, create and reply to inquiries
           </CardDescription>
