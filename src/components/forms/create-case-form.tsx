@@ -18,7 +18,7 @@ import { Input } from "../ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { toast } from "@/hooks/use-toast";
 import {
   CreateCaseRequest,
@@ -26,7 +26,7 @@ import {
 } from "@/lib/validators/create-case";
 import { Textarea } from "../ui/textarea";
 import { User } from "next-auth";
-import { ToastAction } from "@radix-ui/react-toast";
+import { onMutationError } from "@/utils/mutation-error";
 
 interface CreateCaseFormProps {
   user: User;
@@ -48,46 +48,13 @@ const CreateCaseForm: FC<CreateCaseFormProps> = ({ user }) => {
       const { data } = await axios.post("/api/case/", payload);
       return data;
     },
-    onError: (error) => {
-      if (error instanceof AxiosError) {
-        if (error.response?.status === 409) {
-          return toast({
-            title: "Already an open case for this order",
-            description: "Close the previous one before opening new case!",
-            variant: "destructive",
-            action: (
-              <ToastAction
-                onClick={() => window.open(error.request.statusText)}
-                altText="Go to currently open case"
-              >
-                Check
-              </ToastAction>
-            ),
-          });
-        }
-
-        if (error.response?.status === 404) {
-          form.setError("order_id", { message: "Order not found!" });
-
-          return toast({
-            title: "Order not found.",
-            description: "Please verify order number.",
-            variant: "destructive",
-          });
-        }
-
-        return toast({
-          title: "There was an error.",
-          description: "Case creation failed, try again later.",
-          variant: "destructive",
-        });
-      }
-    },
+    onError: onMutationError,
     onSuccess: ({ caseId }: { caseId: number }) => {
       toast({
         description: "Case created successfully",
       });
 
+      router.refresh();
       router.push("/cases/" + caseId);
     },
   });

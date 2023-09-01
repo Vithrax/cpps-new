@@ -21,7 +21,7 @@ import {
   OrderCreateRequest,
 } from "@/lib/validators/new-order";
 import { useMutation } from "@tanstack/react-query";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { Popover } from "@radix-ui/react-popover";
 import { PopoverContent, PopoverTrigger } from "../ui/popover";
 import { cn } from "@/lib/utils";
@@ -34,6 +34,7 @@ import {
   CommandItem,
 } from "../ui/command";
 import { toast } from "@/hooks/use-toast";
+import { onMutationError } from "@/utils/mutation-error";
 
 interface CreateOrderFormProps {
   companies: number[];
@@ -66,23 +67,7 @@ const CreateOrderForm: FC<CreateOrderFormProps> = ({ companies }) => {
       const { data } = await axios.post("/api/order/", payload);
       return data;
     },
-    onError: (error) => {
-      if (error instanceof AxiosError) {
-        if (error.response?.status === 409) {
-          return toast({
-            title: "Order already exists.",
-            description: "Please choose a different order id.",
-            variant: "destructive",
-          });
-        }
-
-        return toast({
-          title: "There was an error.",
-          description: "Order creation failed, try again later.",
-          variant: "destructive",
-        });
-      }
-    },
+    onError: onMutationError,
     onSuccess: () => {
       toast({
         description: "Order created successfully",

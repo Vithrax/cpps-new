@@ -1,81 +1,38 @@
 import { buttonVariants } from "@/components/ui/button";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { getAuthSession } from "@/lib/auth";
-import { LucideMoveRight } from "lucide-react";
-import Link from "next/link";
+import Text from "@/components/ui/text";
+import { GithubIcon, LinkedinIcon } from "lucide-react";
 
 export default async function Home() {
-  const session = await getAuthSession();
-  const isAdmin = session?.user.permission === "admin";
-
   return (
-    <>
-      <div className="flex items-center flex-col md:flex-row gap-3 p-3 min-h-[50vh] mx-auto w-full">
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle>Proposals</CardTitle>
-            <CardDescription>View and process all proposals</CardDescription>
-          </CardHeader>
-          <CardFooter className="flex justify-end">
-            <Link href="/proposal" className={buttonVariants()}>
-              Go
-              <LucideMoveRight className="ml-1 w-4 l-4" />
-            </Link>
-          </CardFooter>
-        </Card>
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle>Cases</CardTitle>
-            <CardDescription>
-              Check, create and reply to inquiries
-            </CardDescription>
-          </CardHeader>
-          <CardFooter className="flex justify-end">
-            <Link href="/cases" className={buttonVariants()}>
-              Go
-              <LucideMoveRight className="ml-1 w-4 l-4" />
-            </Link>
-          </CardFooter>
-        </Card>
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle>Orders</CardTitle>
-            <CardDescription>
-              Create orders to use them in proposals and cases
-            </CardDescription>
-          </CardHeader>
-          <CardFooter className="flex justify-end">
-            <Link href="/order" className={buttonVariants()}>
-              Go
-              <LucideMoveRight className="ml-1 w-4 l-4" />
-            </Link>
-          </CardFooter>
-        </Card>
+    <div className="mt-36 snap-start snap-always grid place-items-center">
+      <Text variant="h1">Welcome to CPPS</Text>
+      <Text className="text-center">
+        Custom Production Proposal System <br />
+        This site is inspired by webapp used by{" "}
+        <span className="italic">&copy;Demant Poland</span> <br />
+      </Text>
+      <Text className="pt-8">Created by Adrian Gajdulewicz</Text>
+      <div className="flex gap-1">
+        <a
+          href="https://www.linkedin.com/in/adrian-gajdulewicz-50137518b/"
+          target="_blank"
+          className={buttonVariants({ variant: "link" })}
+        >
+          <LinkedinIcon className="h-3 w-3 mr-1" />
+          Linkedin
+        </a>
+        <span className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+          &bull;
+        </span>
+        <a
+          href="https://github.com/Vithrax"
+          target="_blank"
+          className={buttonVariants({ variant: "link" })}
+        >
+          <GithubIcon className="h-3 w-3 mr-1" />
+          GitHub
+        </a>
       </div>
-      {isAdmin && (
-        <div className="w-full flex justify-center">
-          <Card className="w-1/2">
-            <CardHeader>
-              <CardTitle>Admin Panel</CardTitle>
-              <CardDescription>
-                Users and configuration management
-              </CardDescription>
-            </CardHeader>
-            <CardFooter className="flex justify-end">
-              <Link href="/admin" className={buttonVariants()}>
-                Go
-                <LucideMoveRight className="ml-1 w-4 l-4" />
-              </Link>
-            </CardFooter>
-          </Card>
-        </div>
-      )}
-    </>
+    </div>
   );
 }

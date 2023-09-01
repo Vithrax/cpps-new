@@ -24,11 +24,11 @@ export default function RootLayout({
       <body className={font.className}>
         <Providers>
           <Navbar />
-          <div className="sm:container px-1">
+          <div className="sm:container px-1 pt-16">
             <Breadcrumbs />
-            <div className="mt-8">{children}</div>
-            <Toaster />
+            <section className="mt-8">{children}</section>
           </div>
+          <Toaster />
         </Providers>
       </body>
     </html>

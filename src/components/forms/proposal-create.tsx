@@ -18,10 +18,9 @@ import { Input } from "../ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { toast } from "@/hooks/use-toast";
 import { User } from "next-auth";
-import { ToastAction } from "@radix-ui/react-toast";
 import { ProposalOption } from "@prisma/client";
 import OptionSelector from "../option-selector";
 import { Separator } from "../ui/separator";
@@ -29,8 +28,8 @@ import {
   CreateProposalForm,
   CreateProposalFormRequest,
   CreateProposalRequest,
-  CreateProposalValidator,
 } from "@/lib/validators/proposal-create";
+import { onMutationError } from "@/utils/mutation-error";
 
 interface ProposalCreateFormProps {
   user: User;
@@ -127,50 +126,7 @@ const ProposalCreateForm: FC<ProposalCreateFormProps> = ({
       const { data } = await axios.post("/api/proposal/", payload);
       return data;
     },
-    onError: (error) => {
-      console.log(error);
-      if (error instanceof AxiosError) {
-        if (error.response?.status === 409) {
-          return toast({
-            title: "Already an open proposal for this order",
-            description: "Close the previous one before opening new proposal!",
-            variant: "destructive",
-            action: (
-              <ToastAction
-                onClick={() => window.open(error.request.statusText)}
-                altText="Go to currently open proposal"
-              >
-                Check
-              </ToastAction>
-            ),
-          });
-        }
-
-        if (error.response?.status === 401) {
-          return toast({
-            title: "Unauthorized.",
-            description: "You are not allowed to perform this action!",
-            variant: "destructive",
-          });
-        }
-
-        if (error.response?.status === 404) {
-          form.setError("orderId", { message: "Order not found!" });
-
-          return toast({
-            title: "Order not found.",
-            description: "Please verify order number.",
-            variant: "destructive",
-          });
-        }
-
-        return toast({
-          title: "There was an error.",
-          description: "Case creation failed, try again later.",
-          variant: "destructive",
-        });
-      }
-    },
+    onError: onMutationError,
     onSuccess: () => {
       toast({
         description: "Case created successfully",

@@ -7,8 +7,9 @@ import { toast } from "@/hooks/use-toast";
 import { UploadFileResponse } from "uploadthing/client";
 import { useMutation } from "@tanstack/react-query";
 import { CaseUploadRequest } from "@/lib/validators/case-upload-attachment";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { useRouter } from "next/navigation";
+import { onMutationError } from "@/utils/mutation-error";
 
 interface CaseUploadFileProps {
   caseId: number;
@@ -27,15 +28,7 @@ const CaseUploadFile: FC<CaseUploadFileProps> = ({ caseId }) => {
       const { data } = await axios.post(`/api/case/attachment/`, payload);
       return data;
     },
-    onError: (error) => {
-      if (error instanceof AxiosError) {
-        return toast({
-          title: "There was an error.",
-          description: "Attachment upload failed, try again later.",
-          variant: "destructive",
-        });
-      }
-    },
+    onError: onMutationError,
     onSuccess: () => {
       toast({
         description: "Attachment has been uploaded!",

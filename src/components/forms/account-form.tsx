@@ -34,6 +34,7 @@ import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
+import { onMutationError } from "@/utils/mutation-error";
 
 interface AccountFormProps {
   user: Pick<User, "id" | "initials">;
@@ -52,23 +53,7 @@ const AccountForm: FC<AccountFormProps> = ({ user }) => {
       const { data } = await axios.patch("/api/account", payload);
       return data;
     },
-    onError: (error) => {
-      if (error instanceof AxiosError) {
-        if (error.response?.status === 409) {
-          return toast({
-            title: "Username already taken.",
-            description: "Please choose a different username.",
-            variant: "destructive",
-          });
-        }
-
-        return toast({
-          title: "There was an error.",
-          description: "Initials update failed, try again later.",
-          variant: "destructive",
-        });
-      }
-    },
+    onError: onMutationError,
     onSuccess: () => {
       toast({
         description: "Your username has been updated",

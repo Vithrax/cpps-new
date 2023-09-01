@@ -1,4 +1,4 @@
-import SideMenuLink from "@/components/ui/side-menu";
+import SideMenuLink from "@/components/side-menu";
 import { getAuthSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 

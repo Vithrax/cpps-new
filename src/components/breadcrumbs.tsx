@@ -23,6 +23,9 @@ const Breadcrumbs = () => {
     };
   });
 
+  // don't render on the first page
+  if (segments.length === 0) return;
+
   return (
     <div className="mt-2 flex items-center">
       <Link

@@ -11,7 +11,7 @@ const Logo: FC<LogoProps> = ({}) => {
     <div
       className={cn(
         font.className,
-        "text-4xl font-medium tracking-tight text-brand-main dark:text-white"
+        "text-2xl sm:text-4xl font-medium tracking-tight text-brand-main dark:text-white"
       )}
     >
       CPPS<span className="text-brand-secondary">.</span>

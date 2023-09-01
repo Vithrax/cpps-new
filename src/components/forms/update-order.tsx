@@ -21,7 +21,7 @@ import {
   OrderUpdateRequest,
 } from "@/lib/validators/update-order";
 import { useMutation } from "@tanstack/react-query";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { Popover } from "@radix-ui/react-popover";
 import { PopoverContent, PopoverTrigger } from "../ui/popover";
 import { cn } from "@/lib/utils";
@@ -35,6 +35,7 @@ import {
 } from "../ui/command";
 import { toast } from "@/hooks/use-toast";
 import { Order } from "@prisma/client";
+import { onMutationError } from "@/utils/mutation-error";
 
 interface UpdateOrderFormProps {
   companies: number[];
@@ -76,23 +77,7 @@ const UpdateOrderForm: FC<UpdateOrderFormProps> = ({ companies, order }) => {
       );
       return data;
     },
-    onError: (error) => {
-      if (error instanceof AxiosError) {
-        if (error.response?.status === 404) {
-          return toast({
-            title: "Order not found.",
-            description: "Please verify order id.",
-            variant: "destructive",
-          });
-        }
-
-        return toast({
-          title: "There was an error.",
-          description: "Order update failed, try again later.",
-          variant: "destructive",
-        });
-      }
-    },
+    onError: onMutationError,
     onSuccess: () => {
       toast({
         description: "Order updated successfully",

@@ -33,8 +33,9 @@ import {
 import { useRouter } from "next/navigation";
 import { Separator } from "../ui/separator";
 import { useMutation } from "@tanstack/react-query";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { toast } from "@/hooks/use-toast";
+import { onMutationError } from "@/utils/mutation-error";
 
 interface AdminEditUserFormProps {
   user: User;
@@ -69,22 +70,7 @@ const AdminEditUserForm: FC<AdminEditUserFormProps> = ({ user, companies }) => {
       const { data } = await axios.patch(`/api/user/${user.id}`, payload);
       return data;
     },
-    onError: (error) => {
-      if (error instanceof AxiosError) {
-        if (error.response?.status === 409) {
-          return toast({
-            title: "Initials already in use, choose different one",
-            variant: "destructive",
-          });
-        }
-
-        return toast({
-          title: "There was an error.",
-          description: "User account update failed, try again later.",
-          variant: "destructive",
-        });
-      }
-    },
+    onError: onMutationError,
     onSuccess: () => {
       toast({
         description: "User account has been updated!",
