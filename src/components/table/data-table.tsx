@@ -1,9 +1,9 @@
-'use client';
+"use client";
 // TODO: search value in multiple columns
 
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -15,7 +15,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from '@tanstack/react-table';
+} from "@tanstack/react-table";
 import {
   Table,
   TableBody,
@@ -23,23 +23,28 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from "@/components/ui/table";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { DataTablePagination } from './pagination';
+} from "@/components/ui/dropdown-menu";
+import { DataTablePagination } from "@/components/table/pagination";
+import { Settings2 } from "lucide-react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  filterPlaceholder: string;
+  filterColumnId: keyof TData;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  filterPlaceholder,
+  filterColumnId,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -66,19 +71,24 @@ export function DataTable<TData, TValue>({
     <div>
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter orders..."
+          placeholder={filterPlaceholder}
           value={
-            (table.getColumn('internalId')?.getFilterValue() as string) ?? ''
+            (table
+              .getColumn(filterColumnId as string)
+              ?.getFilterValue() as string) ?? ""
           }
           onChange={(event) =>
-            table.getColumn('internalId')?.setFilterValue(event.target.value)
+            table
+              .getColumn(filterColumnId as string)
+              ?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns
+            <Button variant="outline" className="ml-auto flex gap-1">
+              <Settings2 className="w-4 h-4" />
+              View
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -127,7 +137,7 @@ export function DataTable<TData, TValue>({
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}
+                  data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>

@@ -25,7 +25,7 @@ const Text = forwardRef<HTMLParagraphElement, TextProps>(
     return (
       <Comp
         ref={ref}
-        className={cn(textVariants({ variant, className }))}
+        className={cn(textVariants({ variant }), className)}
         {...props}
       >
         {children}

@@ -2,6 +2,7 @@ import { NextAuthOptions, getServerSession } from "next-auth";
 import { db } from "./db";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import GoogleProvider from "next-auth/providers/google";
+import { nanoid } from "nanoid";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
@@ -24,9 +25,54 @@ export const authOptions: NextAuthOptions = {
         session.user.name = token.name;
         session.user.email = token.email;
         session.user.image = token.picture;
+        session.user.initials = token.initials;
+        session.user.permission = token.permission;
       }
 
       return session;
+    },
+    async jwt({ token, user }) {
+      const dbUser = await db.user.findFirst({
+        where: {
+          email: token.email,
+        },
+      });
+
+      if (!dbUser) {
+        token.id = user!.id;
+        return token;
+      }
+
+      if (!dbUser.initials) {
+        await db.user.update({
+          where: {
+            id: dbUser.id,
+          },
+          data: {
+            initials: nanoid(4).toUpperCase(),
+          },
+        });
+      }
+
+      if (!dbUser.permission_level) {
+        await db.user.update({
+          where: {
+            id: dbUser.id,
+          },
+          data: {
+            permission_level: "operator",
+          },
+        });
+      }
+
+      return {
+        id: dbUser.id,
+        name: dbUser.name,
+        email: dbUser.email,
+        picture: dbUser.image,
+        initials: dbUser.initials,
+        permission: dbUser.permission_level,
+      };
     },
     redirect() {
       return "/";

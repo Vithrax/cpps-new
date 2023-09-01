@@ -1,34 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a CPPS - Custom Production Proposal System.
 
-## Getting Started
+## About application
 
-First, run the development server:
+This application was build using
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- Typescript
+- Next.js 13 with App router (React)
+- Shadcn/ui
+- Prisma
+- MySQL
+- Tailwind
+- NextAuth
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+... and many more
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Your Background
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+You are working in a medical company that produces a custom, very personalized items for customers that only **they** can wear it.
+Your company is a global-wise provider of such products, and has customers all over the world.
+Those items has to fit them ideally. Otherwise wearing them will be unpleasant or could even cause pain.
+Also, end users needs them to function properly, and lastly, the cost of the product is significant.
 
-## Learn More
+Let's say your company makes _hearing aids_.
 
-To learn more about Next.js, take a look at the following resources:
+In general, end user will want to have as discreet devices as it is possible, but due to ear structure, that's not always possible.
+In those cases your company sends a proposal to the customer, with a list of changes to the original order, that are necessary for us to be able to manufacture the device.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Such proposal previously would have to be completed by the production area, then passed to the customer service, and then, it was send to the customer.
+But now, thanks to the CPPS, a production area creates a proposal directly in CPPS, and the customer can see it and respond to it right away, without the need to communicate with the customer service.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Product description
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. We produce hearing aids - sound amplifier for improved hearing in individuals with impairment.
+2. Device needs to fit ideally, otherwise will cause pain and will be very, very hard to use
+3. Each device is unique for each enduser and for each ear
+4. Every device has it's own unique ID
+5. Product is highly dependend on the customers ear structure
+6. Enduser needs them to function properly, and the cost is high (high priority for turnaround time)

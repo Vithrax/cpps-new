@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   DropdownMenu,
@@ -6,15 +6,15 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
   DropdownMenuItem,
-} from '@/components/ui/dropdown-menu';
-import UserAvatar from '@/components/user-avatar';
-import { User } from 'next-auth';
-import { signOut } from 'next-auth/react';
-import { FC } from 'react';
-import Link from 'next/link';
+} from "@/components/ui/dropdown-menu";
+import UserAvatar from "@/components/user-avatar";
+import { User } from "next-auth";
+import { signOut } from "next-auth/react";
+import { FC } from "react";
+import Link from "next/link";
 
 interface UserAccountNavProps {
-  user: Pick<User, 'name' | 'image' | 'email'>;
+  user: Pick<User, "name" | "image" | "email">;
 }
 
 type MenuLink = {
@@ -24,12 +24,20 @@ type MenuLink = {
 
 const navigation: MenuLink[] = [
   {
-    href: '/inquiry/new',
-    label: 'Open New Case',
+    href: "/inquiry/new",
+    label: "Create new order",
   },
   {
-    href: '/proposal/new',
-    label: 'Create Proposal',
+    href: "/inquiry/new",
+    label: "Open new case",
+  },
+  {
+    href: "/proposal/new",
+    label: "Create proposal",
+  },
+  {
+    href: "/account",
+    label: "My account",
   },
 ];
 

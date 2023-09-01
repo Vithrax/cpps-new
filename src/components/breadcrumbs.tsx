@@ -6,16 +6,16 @@ import { buttonVariants } from "./ui/button";
 
 const Breadcrumbs = () => {
   const pathname = usePathname();
-  const pages = pathname.split("/").filter((page) => page !== "");
+  const segments = pathname.split("/").filter((page) => page !== "");
 
   let link = "";
-  const parsedPages = pages.map((page) => {
-    const name = page
+  const parsedPages = segments.map((segment) => {
+    const name = segment
       .split("-") // split by hyphen
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // capitalize each word
       .join(" "); // join words with spaces
 
-    link = `${link}/${page}`;
+    link = `${link}/${segment}`;
 
     return {
       href: link,
@@ -24,7 +24,7 @@ const Breadcrumbs = () => {
   });
 
   return (
-    <div className="ml-2 mt-2 flex items-center">
+    <div className="mt-2 flex items-center">
       <Link
         href="/"
         className={buttonVariants({ variant: "ghost", size: "xs" })}
