@@ -36,7 +36,7 @@ export async function POST(req: Request) {
 
     const newProposal = await db.proposal.create({
       data: {
-        orderId,
+        orderId: orderId.toUpperCase(),
         userId: session.user.id,
         version: amount + 1,
       },

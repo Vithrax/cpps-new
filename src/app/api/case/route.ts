@@ -21,6 +21,8 @@ export async function POST(req: Request) {
       },
     });
 
+    console.log(order);
+
     if (!order) {
       return new Response("Order not found", { status: 404 });
     }
@@ -43,7 +45,7 @@ export async function POST(req: Request) {
     const newCase = await db.case.create({
       data: {
         comment,
-        orderId: order_id,
+        orderId: order_id.toUpperCase(),
         userId: session.user.id,
       },
     });

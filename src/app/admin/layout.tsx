@@ -16,32 +16,28 @@ const page = async ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <div className="w-full h-full gap-16 grid grid-cols-1 sm:grid-cols-[min-content_1fr] mt-8">
-      <aside className="flex sm:flex-col gap-4 sm:gap-0 flex-row w-fit min-w-max">
+    <div className="w-full h-full gap-16 grid grid-cols-1 md:grid-cols-[min-content_1fr] mt-8">
+      <aside className="flex md:flex-col gap-4 md:gap-0 flex-row w-fit min-w-max">
         <div className="pb-4">
           <h4 className={groupTitleStyle}>Proposal</h4>
           <div className={linkContainerStyle}>
-            <SideMenuLink href="/admin/proposal-option">
-              All options
-            </SideMenuLink>
+            <SideMenuLink href="/admin/proposal-option">List</SideMenuLink>
             <SideMenuLink href="/admin/proposal-option/new">
-              Create option
+              Create
             </SideMenuLink>
           </div>
         </div>
         <div className="pb-4">
           <h4 className={groupTitleStyle}>Users</h4>
           <div className={linkContainerStyle}>
-            <SideMenuLink href="/admin/user">All users</SideMenuLink>
+            <SideMenuLink href="/admin/user">List</SideMenuLink>
           </div>
         </div>
         <div className="pb-4">
           <h4 className={groupTitleStyle}>Companies</h4>
           <div className={linkContainerStyle}>
-            <SideMenuLink href="/admin/company">All companies</SideMenuLink>
-            <SideMenuLink href="/admin/company/new">
-              Create company
-            </SideMenuLink>
+            <SideMenuLink href="/admin/company">List</SideMenuLink>
+            <SideMenuLink href="/admin/company/new">Create</SideMenuLink>
           </div>
         </div>
       </aside>

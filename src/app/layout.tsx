@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className={font.className}>
         <Providers>
           <Navbar />
-          <div className="container">
+          <div className="sm:container px-1">
             <Breadcrumbs />
             <div className="mt-8">{children}</div>
             <Toaster />
