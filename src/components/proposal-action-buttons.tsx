@@ -1,6 +1,6 @@
 "use client";
 
-import { FC } from "react";
+import type { FC } from "react";
 import { CardFooter } from "./ui/card";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";

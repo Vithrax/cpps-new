@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { FC } from "react";
+import type { FC } from "react";
 import { Brand } from "@prisma/client";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";

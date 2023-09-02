@@ -4,7 +4,7 @@ import { Bell } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Separator } from "./ui/separator";
 import { db } from "@/lib/db";
-import { FC } from "react";
+import type { FC } from "react";
 import { getUserAccessData } from "@/lib/fetch-user-access";
 import { Label } from "./ui/label";
 import Link from "next/link";

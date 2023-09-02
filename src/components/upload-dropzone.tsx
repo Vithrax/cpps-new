@@ -2,7 +2,7 @@ import { UploadDropzone } from "@uploadthing/react";
 import { OurFileRouter } from "@/app/api/uploadthing/core";
 import { Upload } from "lucide-react";
 import { buttonVariants } from "./ui/button";
-import { FC } from "react";
+import type { FC } from "react";
 import { UploadFileResponse } from "uploadthing/client";
 
 interface UploadZoneProps {

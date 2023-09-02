@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { FC } from "react";
+import type { FC } from "react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";

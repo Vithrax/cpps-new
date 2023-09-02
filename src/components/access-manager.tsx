@@ -1,6 +1,6 @@
 "use client";
 
-import { FC } from "react";
+import type { FC } from "react";
 import { Separator } from "./ui/separator";
 import { CardContent } from "./ui/card";
 import { ScrollArea } from "./ui/scroll-area";

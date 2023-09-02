@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { Unbounded } from "next/font/google";
 import { cn } from "@/lib/utils";
 

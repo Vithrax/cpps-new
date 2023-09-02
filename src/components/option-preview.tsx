@@ -1,6 +1,6 @@
 "use client";
 
-import { FC } from "react";
+import type { FC } from "react";
 import { Label } from "./ui/label";
 import { Checkbox } from "./ui/checkbox";
 

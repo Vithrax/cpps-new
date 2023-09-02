@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import Image from "next/image";
 import { AvatarProps } from "@radix-ui/react-avatar";

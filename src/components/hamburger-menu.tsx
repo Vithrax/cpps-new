@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,10 +11,26 @@ import { buttonVariants } from "./ui/button";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import type { Session } from "next-auth";
+import { MenuLink } from "@/types/MenuLink";
 
 interface HamburgerMenuProps {
   session: Session | null;
 }
+
+const navigation: MenuLink[] = [
+  {
+    href: "/orders",
+    label: "Order",
+  },
+  {
+    href: "/cases",
+    label: "Cases",
+  },
+  {
+    href: "/proposals",
+    label: "Proposals",
+  },
+];
 
 const HamburgerMenu: FC<HamburgerMenuProps> = async ({ session }) => {
   if (!session) return;
@@ -31,23 +47,13 @@ const HamburgerMenu: FC<HamburgerMenuProps> = async ({ session }) => {
         <DropdownMenuContent>
           <DropdownMenuLabel>Pages</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <Link href="/orders" className="h-full w-full">
-              Orders
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href="/proposals" className="h-full w-full">
-              Proposals
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href="/cases" className="h-full w-full">
-              Cases
-            </Link>
-          </DropdownMenuItem>
+          {navigation.map((item, index) => (
+            <DropdownMenuItem key={index} asChild>
+              <Link href={item.href}>{item.label}</Link>
+            </DropdownMenuItem>
+          ))}
           {isAdmin && (
-            <DropdownMenuItem>
+            <DropdownMenuItem asChild>
               <Link href="/admin" className="h-full w-full text-red-500">
                 Admin Panel
               </Link>

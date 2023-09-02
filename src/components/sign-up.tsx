@@ -1,6 +1,6 @@
 "use client";
 
-import { FC } from "react";
+import type { FC } from "react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
