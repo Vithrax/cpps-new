@@ -13,7 +13,7 @@ const Navbar = async () => {
 
   return (
     <header className="fixed top-0 border-b w-screen z-10">
-      <nav className="items-center mx-auto flex justify-between px-4 py-3 backdrop-blur-sm">
+      <nav className="items-center mx-auto max-w-7xl flex justify-between px-4 py-3 backdrop-blur-sm">
         <HamburgerMenu session={session} />
         <Link href="/" className="mr-4">
           <Logo />
