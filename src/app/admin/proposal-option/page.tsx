@@ -14,7 +14,7 @@ export default async function Page() {
   const data = await getData();
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="sm:container sm:py-10 px-1">
       <DataTable
         columns={columns}
         data={data}

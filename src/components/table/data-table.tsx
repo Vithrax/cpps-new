@@ -1,5 +1,4 @@
 "use client";
-// TODO: search value in multiple columns
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";

@@ -17,9 +17,9 @@ const page = async ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="w-full h-full gap-16 grid grid-cols-1 md:grid-cols-[min-content_1fr] mt-8">
-      <aside className="flex md:flex-col gap-4 md:gap-0 flex-row w-fit min-w-max">
-        <div className="pb-4">
-          <h4 className={groupTitleStyle}>Proposal</h4>
+      <aside className="flex pb-2 bg-primary-foreground md:bg-transparent md:border-0 md:flex-col w-full rounded-md border justify-around md:justify-normal gap-4 md:gap-0 flex-row md:w-fit min-w-max">
+        <div className="md:pb-4">
+          <h4 className={groupTitleStyle}>Options</h4>
           <div className={linkContainerStyle}>
             <SideMenuLink href="/admin/proposal-option">List</SideMenuLink>
             <SideMenuLink href="/admin/proposal-option/new">
@@ -27,13 +27,13 @@ const page = async ({ children }: { children: React.ReactNode }) => {
             </SideMenuLink>
           </div>
         </div>
-        <div className="pb-4">
+        <div className="md:pb-4">
           <h4 className={groupTitleStyle}>Users</h4>
           <div className={linkContainerStyle}>
             <SideMenuLink href="/admin/user">List</SideMenuLink>
           </div>
         </div>
-        <div className="pb-4">
+        <div className="md:pb-4">
           <h4 className={groupTitleStyle}>Companies</h4>
           <div className={linkContainerStyle}>
             <SideMenuLink href="/admin/company">List</SideMenuLink>
@@ -41,7 +41,7 @@ const page = async ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       </aside>
-      <main className="h-full mt-8 sm:mt-0">{children}</main>
+      <main className="h-full">{children}</main>
     </div>
   );
 };

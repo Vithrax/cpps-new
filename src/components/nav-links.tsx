@@ -16,8 +16,6 @@ const NavLinks: FC<NavLinksProps> = ({ session }) => {
   if (!session) return;
   const isAdmin = session.user.permission === "admin";
 
-  console.log(pathname);
-
   const activeClass = (path: string) => {
     if (pathname.startsWith(path)) return "bg-primary/10";
 

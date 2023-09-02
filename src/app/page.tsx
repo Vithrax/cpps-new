@@ -4,7 +4,7 @@ import { GithubIcon, LinkedinIcon } from "lucide-react";
 
 export default async function Home() {
   return (
-    <div className="mt-36 snap-start snap-always grid place-items-center">
+    <div className="mt-36 snap-start snap-always grid place-items-center px-2">
       <Text variant="h1">Welcome to CPPS</Text>
       <Text className="text-center">
         Custom Production Proposal System <br />

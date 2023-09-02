@@ -12,17 +12,17 @@ const Navbar = async () => {
   const session = await getAuthSession();
 
   return (
-    <header className="fixed top-0 border-b w-full z-10">
-      <nav className="items-center container mx-auto flex justify-between px-4 py-3 backdrop-blur-sm">
+    <header className="fixed top-0 border-b w-screen z-10">
+      <nav className="items-center mx-auto flex justify-between px-4 py-3 backdrop-blur-sm">
         <HamburgerMenu session={session} />
         <Link href="/" className="mr-4">
           <Logo />
         </Link>
         <NavLinks session={session} />
         <div className="flex items-center">
-          <div className="hidden md:block">
+          <div className="hidden md:block mr-1">
             <ModeToggle />
-            <NavNotifications />
+            <NavNotifications session={session} />
           </div>
           {!session ? (
             <Link className={buttonVariants()} href="/sign-in">

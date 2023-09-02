@@ -28,7 +28,7 @@ export default async function Page() {
   const data = await getData();
 
   return (
-    <div className="container">
+    <div className="sm:container sm:py-10 px-1">
       <Text variant="h3">All users</Text>
       <DataTable
         columns={columns}
