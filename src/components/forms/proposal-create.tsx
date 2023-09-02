@@ -1,10 +1,16 @@
 "use client";
 
-import "@uploadthing/react/styles.css";
+import axios from "axios";
 import { FC, useState } from "react";
-import { CardContent, CardFooter } from "../ui/card";
-import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import OptionSelector from "@/components/option-selector";
+import { CardContent, CardFooter } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -13,23 +19,17 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { toast } from "@/hooks/use-toast";
-import { User } from "next-auth";
-import { ProposalOption } from "@prisma/client";
-import OptionSelector from "../option-selector";
-import { Separator } from "../ui/separator";
+} from "@/components/ui/form";
 import {
   CreateProposalForm,
   CreateProposalFormRequest,
   CreateProposalRequest,
 } from "@/lib/validators/proposal-create";
+import { toast } from "@/hooks/use-toast";
 import { onMutationError } from "@/utils/mutation-error";
+import "@uploadthing/react/styles.css";
+import type { User } from "next-auth";
+import type { ProposalOption } from "@prisma/client";
 
 interface ProposalCreateFormProps {
   user: User;
@@ -132,7 +132,7 @@ const ProposalCreateForm: FC<ProposalCreateFormProps> = ({
         description: "Case created successfully",
       });
 
-      router.push("/proposal/");
+      router.push("/proposals/");
       router.refresh();
     },
   });

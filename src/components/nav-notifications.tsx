@@ -4,11 +4,11 @@ import { Bell } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Separator } from "./ui/separator";
 import { db } from "@/lib/db";
-import { Session } from "next-auth";
 import { FC } from "react";
 import { getUserAccessData } from "@/lib/fetch-user-access";
 import { Label } from "./ui/label";
 import Link from "next/link";
+import type { Session } from "next-auth";
 
 interface NavNotificationsProps {
   session: Session | null;
@@ -79,7 +79,7 @@ const NavNotifications: FC<NavNotificationsProps> = async ({ session }) => {
         )}
         {countProposals > 0 && (
           <Link
-            href="/proposal"
+            href="/proposals"
             className="hover:bg-primary-foreground px-2 py-1 rounded-md"
           >
             {countProposals} proposals pending

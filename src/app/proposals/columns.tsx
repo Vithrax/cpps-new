@@ -1,20 +1,12 @@
 "use client";
 
-import { type BadgeVariants } from "@/components/ui/badge";
+import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal, ArrowUpDown } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { ArrowUpDown } from "lucide-react";
+import { type BadgeVariants } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ProposalColumn } from "@/types/ProposalColumns";
-import Link from "next/link";
 
 export const columns: ColumnDef<ProposalColumn>[] = [
   {
@@ -35,7 +27,7 @@ export const columns: ColumnDef<ProposalColumn>[] = [
 
       return (
         <Link
-          href={"/proposal/" + proposal.proposal_id}
+          href={"/proposals/" + proposal.proposal_id}
           className={buttonVariants({ variant: "ghost", size: "xs" })}
         >
           {proposal.proposal_id}
@@ -99,49 +91,6 @@ export const columns: ColumnDef<ProposalColumn>[] = [
         month: "long",
         year: "numeric",
       });
-    },
-  },
-  {
-    id: "actions",
-    cell: ({ row }) => {
-      const proposal = row.original;
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(proposal.order_id)}
-            >
-              Copy internal ID
-            </DropdownMenuItem>
-            {proposal.external_id && (
-              <DropdownMenuItem
-                onClick={() =>
-                  navigator.clipboard.writeText(proposal.external_id!)
-                }
-              >
-                Copy external ID
-              </DropdownMenuItem>
-            )}
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link
-                href={`/proposal/${proposal.proposal_id}`}
-                className="w-full"
-              >
-                Edit
-              </Link>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
     },
   },
 ];

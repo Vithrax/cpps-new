@@ -1,8 +1,8 @@
-import { columns } from "./columns";
+import { db } from "@/lib/db";
 import { type UserColumns } from "@/types/UserColumns";
 import { DataTable } from "@/components/table/data-table";
-import { db } from "@/lib/db";
 import Text from "@/components/ui/text";
+import { columns } from "./columns";
 
 async function getData(): Promise<UserColumns[]> {
   // Fetch here

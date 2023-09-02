@@ -1,6 +1,11 @@
+import { redirect } from "next/navigation";
 import SideMenuLink from "@/components/side-menu";
 import { getAuthSession } from "@/lib/auth";
-import { redirect } from "next/navigation";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "CPPS | My account",
+};
 
 // styles
 const groupTitleStyle = "mb-1 rounded-md px-2 py-1 text-sm font-semibold";

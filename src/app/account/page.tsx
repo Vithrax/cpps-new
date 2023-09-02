@@ -1,3 +1,7 @@
+import { redirect } from "next/navigation";
+import { Building2, FileKey2, User } from "lucide-react";
+import { db } from "@/lib/db";
+import { authOptions, getAuthSession } from "@/lib/auth";
 import AccountForm from "@/components/forms/account-form";
 import {
   Card,
@@ -12,10 +16,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { authOptions, getAuthSession } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { Building2, FileKey2, User } from "lucide-react";
-import { redirect } from "next/navigation";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "CPPS | My account",
+};
 
 const Page = async () => {
   const session = await getAuthSession();

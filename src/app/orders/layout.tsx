@@ -1,5 +1,10 @@
-import { authOptions, getAuthSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import { authOptions, getAuthSession } from "@/lib/auth";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "CPPS | Orders",
+};
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
   const session = await getAuthSession();

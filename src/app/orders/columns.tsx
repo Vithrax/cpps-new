@@ -1,13 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpDown } from "lucide-react";
+import { Order } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
+import { ArrowUpDown } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Badge, BadgeVariants } from "@/components/ui/badge";
-import { CaseColumn } from "@/types/CaseColumns";
 
-export const columns: ColumnDef<CaseColumn>[] = [
+export const columns: ColumnDef<Order>[] = [
   {
     accessorKey: "order_id",
     header: ({ column }) => {
@@ -22,38 +21,15 @@ export const columns: ColumnDef<CaseColumn>[] = [
       );
     },
     cell: ({ row }) => {
-      const caseData = row.original;
+      const order = row.original;
 
       return (
         <Link
-          href={"/cases/" + caseData.case_id}
+          href={`/orders/${order.order_id}`}
           className={buttonVariants({ variant: "ghost", size: "xs" })}
         >
-          {caseData.order_id}
+          {order.order_id}
         </Link>
-      );
-    },
-  },
-  {
-    accessorKey: "status",
-    header: "Status",
-    cell: ({ row }) => {
-      const order = row.original;
-
-      let variant: BadgeVariants;
-      switch (order.status) {
-        case "answered":
-          variant = "success";
-          break;
-        case "pending":
-          variant = "processing";
-          break;
-      }
-
-      return (
-        <Badge variant={variant} className="mx-auto">
-          {order.status}
-        </Badge>
       );
     },
   },
@@ -70,8 +46,12 @@ export const columns: ColumnDef<CaseColumn>[] = [
     header: "End user",
   },
   {
-    accessorKey: "initials",
-    header: "Creator Initials",
+    accessorKey: "first_product_id",
+    header: "First Device No.",
+  },
+  {
+    accessorKey: "second_product_id",
+    header: "Second Device No.",
   },
   {
     accessorKey: "created_at",

@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { FC } from "react";
-import { Session } from "next-auth";
 import { usePathname } from "next/navigation";
+import type { Session } from "next-auth";
 
 interface NavLinksProps {
   session: Session | null;
@@ -24,11 +24,11 @@ const NavLinks: FC<NavLinksProps> = ({ session }) => {
 
   return (
     <div className="items-center mr-auto hidden md:flex">
-      <Button variant="ghost" className={activeClass("/order")}>
-        <Link href="/order">Orders</Link>
+      <Button variant="ghost" className={activeClass("/orders")}>
+        <Link href="/orders">Orders</Link>
       </Button>
-      <Button variant="ghost" className={activeClass("/proposal")}>
-        <Link href="/proposal">Proposals</Link>
+      <Button variant="ghost" className={activeClass("/proposals")}>
+        <Link href="/proposals">Proposals</Link>
       </Button>
       <Button variant="ghost" className={activeClass("/cases")}>
         <Link href="/cases">Cases</Link>

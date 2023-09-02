@@ -1,5 +1,16 @@
 "use client";
 
+import axios from "axios";
+import { FC } from "react";
+import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "@/hooks/use-toast";
+import { signOut } from "next-auth/react";
+import { Input } from "@/components/ui/input";
+import { CardContent, CardFooter } from "@/components/ui/card";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -10,16 +21,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import {
-  AccountUpdateValidator,
-  AccountValidator,
-} from "@/lib/validators/account";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import axios, { AxiosError } from "axios";
-import { Input } from "../ui/input";
-import { useMutation } from "@tanstack/react-query";
-import { CardContent, CardFooter } from "../ui/card";
-import {
   Dialog,
   DialogContent,
   DialogDescription,
@@ -27,14 +28,13 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../ui/dialog";
-import { Button, buttonVariants } from "../ui/button";
-import { toast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
-import { FC } from "react";
-import { User } from "@prisma/client";
-import { signOut } from "next-auth/react";
+} from "@/components/ui/dialog";
+import {
+  AccountUpdateValidator,
+  AccountValidator,
+} from "@/lib/validators/account";
 import { onMutationError } from "@/utils/mutation-error";
+import type { User } from "@prisma/client";
 
 interface AccountFormProps {
   user: Pick<User, "id" | "initials">;
@@ -69,15 +69,7 @@ const AccountForm: FC<AccountFormProps> = ({ user }) => {
       const { data } = await axios.delete(`/api/account`);
       return data;
     },
-    onError: (error) => {
-      if (error instanceof AxiosError) {
-        return toast({
-          title: "There was an error.",
-          description: "Error while deleting account, please try again later.",
-          variant: "destructive",
-        });
-      }
-    },
+    onError: onMutationError,
     onSuccess: () => {
       toast({
         description: "Your account has been deleted.",

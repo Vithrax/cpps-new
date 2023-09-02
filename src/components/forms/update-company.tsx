@@ -1,6 +1,28 @@
 "use client";
 
+import axios from "axios";
 import { FC } from "react";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { Brand, type Company } from "@prisma/client";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "@/components/ui/input";
+import { CardContent, CardFooter } from "@/components/ui/card";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "@/components/ui/command";
 import {
   Form,
   FormControl,
@@ -10,30 +32,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { Input } from "@/components/ui/input";
 import {
   UpdateCompanyValidator,
   CompanyUpdateRequest,
 } from "@/lib/validators/update-company";
-import { CardContent, CardFooter } from "../ui/card";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Button } from "../ui/button";
-import { cn } from "@/lib/utils";
-import { Check, ChevronsUpDown } from "lucide-react";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "../ui/command";
-import { Brand, Company } from "@prisma/client";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 import { toast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 import { onMutationError } from "@/utils/mutation-error";
 
 interface UpdateCompanyFormProps {

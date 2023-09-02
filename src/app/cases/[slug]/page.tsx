@@ -1,5 +1,14 @@
+import Image from "next/image";
+import { notFound, redirect } from "next/navigation";
+import { db } from "@/lib/db";
+import { cn } from "@/lib/utils";
+import { authOptions, getAuthSession } from "@/lib/auth";
 import CaseActionButtons from "@/components/case-action-buttons";
 import CaseUploadFile from "@/components/forms/case-upload-file";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { Textarea } from "@/components/ui/textarea";
 import { Badge, BadgeVariants } from "@/components/ui/badge";
 import {
   Card,
@@ -9,15 +18,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
-import { Textarea } from "@/components/ui/textarea";
-import { authOptions, getAuthSession } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
-import { notFound, redirect } from "next/navigation";
 
 interface pageProps {
   params: {

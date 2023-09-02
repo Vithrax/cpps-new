@@ -1,5 +1,5 @@
-import { getAuthSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import { getAuthSession } from "@/lib/auth";
 import SignUp from "@/components/sign-up";
 
 const Page = async () => {

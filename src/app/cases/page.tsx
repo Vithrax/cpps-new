@@ -1,9 +1,9 @@
-import { buttonVariants } from "@/components/ui/button";
-import { columns } from "./columns";
-import { DataTable } from "@/components/table/data-table";
-import { db } from "@/lib/db";
-import { CaseColumn } from "@/types/CaseColumns";
 import Link from "next/link";
+import { db } from "@/lib/db";
+import { DataTable } from "@/components/table/data-table";
+import { buttonVariants } from "@/components/ui/button";
+import { CaseColumn } from "@/types/CaseColumns";
+import { columns } from "./columns";
 
 async function getData(): Promise<CaseColumn[]> {
   const rawCases = await db.case.findMany({

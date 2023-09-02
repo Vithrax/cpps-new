@@ -1,7 +1,6 @@
 "use client";
 
 import { Case } from "@prisma/client";
-import { Session } from "next-auth";
 import { FC, useState } from "react";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
@@ -19,6 +18,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { toast } from "@/hooks/use-toast";
 import { ReplyRequest } from "@/lib/validators/reply";
+import type { Session } from "next-auth";
 
 interface CaseActionButtonsProps {
   session: Session;

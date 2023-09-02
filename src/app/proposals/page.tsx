@@ -1,10 +1,10 @@
-import { columns } from "@/app/proposal/columns";
-import { DataTable } from "@/components/table/data-table";
-import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
 import { db } from "@/lib/db";
 import { getUserAccessData } from "@/lib/fetch-user-access";
+import { DataTable } from "@/components/table/data-table";
+import { buttonVariants } from "@/components/ui/button";
 import { ProposalColumn } from "@/types/ProposalColumns";
-import Link from "next/link";
+import { columns } from "./columns";
 
 async function getData(): Promise<ProposalColumn[]> {
   const userAccessList = await getUserAccessData();
@@ -64,7 +64,7 @@ export default async function Page() {
         filterPlaceholder="Filter orders..."
         filterColumnId="order_id"
       />
-      <Link href="/proposal/new" className={buttonVariants()}>
+      <Link href="/proposals/new" className={buttonVariants()}>
         Create new proposal
       </Link>
     </div>

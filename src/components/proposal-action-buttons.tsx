@@ -1,15 +1,16 @@
 "use client";
 
-import { Session } from "next-auth";
 import { FC } from "react";
-import { Proposal } from "@prisma/client";
 import { CardFooter } from "./ui/card";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { toast } from "@/hooks/use-toast";
 import { ProposalReplyRequest } from "@/lib/validators/proposal-action";
+import { onMutationError } from "@/utils/mutation-error";
+import type { Session } from "next-auth";
+import type { Proposal } from "@prisma/client";
 
 interface ProposalActionButtonsProps {
   session: Session;
@@ -41,40 +42,7 @@ const ProposalActionButtons: FC<ProposalActionButtonsProps> = ({
       );
       return data;
     },
-    onError: (error) => {
-      if (error instanceof AxiosError) {
-        if (error.response?.status == 401) {
-          return toast({
-            title: "Unauthorized",
-            description: "You are not authorized to perform this action!",
-            variant: "destructive",
-          });
-        }
-
-        if (error.response?.status == 404) {
-          return toast({
-            title: "Proposal not found",
-            description:
-              "Server could not found given proposal, please check id",
-            variant: "destructive",
-          });
-        }
-
-        if (error.response?.status == 409) {
-          return toast({
-            title: "Not possible",
-            description: "Not possible to reply to this proposal!",
-            variant: "destructive",
-          });
-        }
-      }
-
-      return toast({
-        title: "Something went wrong",
-        description: "Could not reply to proposal, please try again later!",
-        variant: "destructive",
-      });
-    },
+    onError: onMutationError,
     onSuccess: () => {
       toast({
         title: "Success!",

@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import UpdateOrderForm from "@/components/forms/update-order";
 import {
   Card,
@@ -9,7 +10,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { db } from "@/lib/db";
-import { notFound } from "next/navigation";
 
 interface pageProps {
   params: {

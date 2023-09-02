@@ -17,9 +17,11 @@ export async function PATCH(
       return new Response("Unauthorized", { status: 401 });
     }
 
+    const { permission } = session.user;
+
     // helpers
-    const isClient = session.user.permission === "client";
-    const isOperator = session.user.permission === "operator";
+    const isClient = permission === "client";
+    const isOperator = permission === "operator";
 
     const proposal = await db.proposal.findFirst({
       where: {
@@ -68,6 +70,6 @@ export async function PATCH(
 
     return new Response("OK", { status: 200 });
   } catch (error) {
-    errorResponse(error, "Could not cancel order");
+    return errorResponse(error, "Could not cancel order");
   }
 }

@@ -1,16 +1,8 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal, ArrowUpDown } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
+import { ArrowUpDown } from "lucide-react";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { UserColumns } from "@/types/UserColumns";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
@@ -19,6 +11,18 @@ export const columns: ColumnDef<UserColumns>[] = [
   {
     accessorKey: "initials",
     header: "Initials",
+    cell: ({ row }) => {
+      const user = row.original;
+
+      return (
+        <Link
+          href={`/admin/user/${user.id}`}
+          className={buttonVariants({ variant: "ghost", size: "xs" })}
+        >
+          {user.id}
+        </Link>
+      );
+    },
   },
   {
     accessorKey: "email",
@@ -64,46 +68,6 @@ export const columns: ColumnDef<UserColumns>[] = [
             </Badge>
           ))}
         </div>
-      );
-    },
-  },
-  {
-    id: "actions",
-    cell: ({ row }) => {
-      const user = row.original;
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() =>
-                navigator.clipboard.writeText((user.name || user.id)!)
-              }
-            >
-              Copy name
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(user.email || "")}
-            >
-              Copy email
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuLabel>Account</DropdownMenuLabel>
-            <DropdownMenuItem>
-              <Link href={`/admin/user/${user.id}`} className="w-full">
-                Edit
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="text-red-500">Delete</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
       );
     },
   },

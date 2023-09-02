@@ -1,9 +1,16 @@
 "use client";
 
+import axios from "axios";
 import { FC } from "react";
-import { CardContent, CardFooter } from "../ui/card";
-import { Button } from "../ui/button";
+import { useMutation } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { CardContent, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
   Form,
   FormControl,
@@ -12,27 +19,20 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  OrderCreateValdiator,
-  OrderCreateRequest,
-} from "@/lib/validators/new-order";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { Popover } from "@radix-ui/react-popover";
-import { PopoverContent, PopoverTrigger } from "../ui/popover";
+} from "@/components/ui/form";
+import { Popover } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { Check, ChevronsUpDown } from "lucide-react";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from "../ui/command";
+} from "@/components/ui/command";
+import {
+  OrderCreateValdiator,
+  OrderCreateRequest,
+} from "@/lib/validators/new-order";
 import { toast } from "@/hooks/use-toast";
 import { onMutationError } from "@/utils/mutation-error";
 

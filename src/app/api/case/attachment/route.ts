@@ -1,8 +1,8 @@
+import { utapi } from "uploadthing/server";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { CaseUploadValidator } from "@/lib/validators/case-upload-attachment";
 import { errorResponse } from "@/utils/route-error";
-import { utapi } from "uploadthing/server";
 
 export async function POST(req: Request) {
   try {

@@ -8,10 +8,10 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import UserAvatar from "@/components/user-avatar";
-import { User } from "next-auth";
 import { signOut } from "next-auth/react";
 import { FC } from "react";
 import Link from "next/link";
+import type { User } from "next-auth";
 
 interface UserAccountNavProps {
   user: Pick<User, "name" | "image" | "email">;
@@ -24,15 +24,15 @@ type MenuLink = {
 
 const navigation: MenuLink[] = [
   {
-    href: "/inquiry/new",
+    href: "/orders/new",
     label: "Create new order",
   },
   {
-    href: "/inquiry/new",
+    href: "/cases/new",
     label: "Open new case",
   },
   {
-    href: "/proposal/new",
+    href: "/proposals/new",
     label: "Create proposal",
   },
   {

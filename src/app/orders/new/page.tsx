@@ -1,3 +1,4 @@
+import { db } from "@/lib/db";
 import CreateOrderForm from "@/components/forms/create-order";
 import {
   Card,
@@ -5,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { db } from "@/lib/db";
 
 const page = async ({}) => {
   const companies = await db.company.findMany({

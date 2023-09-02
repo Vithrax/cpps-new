@@ -1,15 +1,15 @@
 "use client";
 
-import { FC } from "react";
-import { CardContent } from "../ui/card";
-import UploadZone from "../upload-dropzone";
-import { toast } from "@/hooks/use-toast";
-import { UploadFileResponse } from "uploadthing/client";
-import { useMutation } from "@tanstack/react-query";
-import { CaseUploadRequest } from "@/lib/validators/case-upload-attachment";
 import axios from "axios";
+import { FC } from "react";
 import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "@/hooks/use-toast";
+import { CardContent } from "@/components/ui/card";
+import UploadZone from "@/components/upload-dropzone";
+import { CaseUploadRequest } from "@/lib/validators/case-upload-attachment";
 import { onMutationError } from "@/utils/mutation-error";
+import type { UploadFileResponse } from "uploadthing/client";
 
 interface CaseUploadFileProps {
   caseId: number;

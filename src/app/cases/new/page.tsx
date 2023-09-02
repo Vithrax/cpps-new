@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+import { authOptions, getAuthSession } from "@/lib/auth";
 import CreateCaseForm from "@/components/forms/create-case-form";
 import {
   Card,
@@ -5,8 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { authOptions, getAuthSession } from "@/lib/auth";
-import { redirect } from "next/navigation";
 
 const page = async ({}) => {
   const session = await getAuthSession();

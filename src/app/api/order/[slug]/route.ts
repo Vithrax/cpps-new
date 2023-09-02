@@ -1,7 +1,7 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { OrderUpdateValdiator } from "@/lib/validators/update-order";
-import { z } from "zod";
+import { errorResponse } from "@/utils/route-error";
 
 export async function PATCH(
   req: Request,
@@ -47,10 +47,6 @@ export async function PATCH(
 
     return new Response("OK");
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      return new Response("Invalid request data passed", { status: 422 });
-    }
-
-    return new Response("Could not update order", { status: 500 });
+    return errorResponse(error, "Invalid request data passed");
   }
 }

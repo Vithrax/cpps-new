@@ -1,7 +1,23 @@
 "use client";
 
-import { Role, User } from "@prisma/client";
+import axios from "axios";
 import { FC } from "react";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { Role, type User } from "@prisma/client";
+import { toast } from "@/hooks/use-toast";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { CardContent, CardFooter } from "@/components/ui/card";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Form,
   FormControl,
@@ -10,32 +26,20 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "../ui/input";
-import { CardContent, CardFooter } from "../ui/card";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Button } from "../ui/button";
-import { cn } from "@/lib/utils";
-import { Check, ChevronsUpDown } from "lucide-react";
+} from "@/components/ui/form";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from "../ui/command";
+} from "@/components/ui/command";
 import {
   AdminAccountUpdateRequest,
   AdminAccountValidator,
 } from "@/lib/validators/admin-account";
-import { useRouter } from "next/navigation";
-import { Separator } from "../ui/separator";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { toast } from "@/hooks/use-toast";
 import { onMutationError } from "@/utils/mutation-error";
+import { cn } from "@/lib/utils";
 
 interface AdminEditUserFormProps {
   user: User;

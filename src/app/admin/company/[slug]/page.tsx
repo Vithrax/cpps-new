@@ -1,3 +1,7 @@
+import { notFound } from "next/navigation";
+import { db } from "@/lib/db";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import UpdateCompanyForm from "@/components/forms/update-company";
 import {
   Card,
@@ -6,10 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { db } from "@/lib/db";
-import { notFound } from "next/navigation";
 
 interface pageProps {
   params: {

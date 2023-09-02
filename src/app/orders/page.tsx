@@ -1,10 +1,10 @@
-import { buttonVariants } from "@/components/ui/button";
-import { columns } from "./columns";
-import { DataTable } from "@/components/table/data-table";
-import { db } from "@/lib/db";
-import { Order } from "@prisma/client";
 import Link from "next/link";
+import { Order } from "@prisma/client";
+import { db } from "@/lib/db";
 import { getUserAccessData } from "@/lib/fetch-user-access";
+import { buttonVariants } from "@/components/ui/button";
+import { DataTable } from "@/components/table/data-table";
+import { columns } from "./columns";
 
 async function getData(): Promise<Order[]> {
   const userAccessList = await getUserAccessData();
@@ -29,7 +29,7 @@ export default async function Page() {
         filterPlaceholder="Filter orders..."
         filterColumnId="order_id"
       />
-      <Link href="/order/new" className={buttonVariants()}>
+      <Link href="/orders/new" className={buttonVariants()}>
         Create new order
       </Link>
     </div>

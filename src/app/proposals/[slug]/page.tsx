@@ -1,3 +1,8 @@
+import { notFound, redirect } from "next/navigation";
+import { db } from "@/lib/db";
+import { cn } from "@/lib/utils";
+import { getUserAccessData } from "@/lib/fetch-user-access";
+import { authOptions, getAuthSession } from "@/lib/auth";
 import OptionPreview from "@/components/option-preview";
 import ProposalActionButtons from "@/components/proposal-action-buttons";
 import { Badge, BadgeVariants } from "@/components/ui/badge";
@@ -11,11 +16,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { authOptions, getAuthSession } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { getUserAccessData } from "@/lib/fetch-user-access";
-import { cn } from "@/lib/utils";
-import { notFound, redirect } from "next/navigation";
 
 interface pageProps {
   params: {

@@ -1,5 +1,13 @@
 "use client";
 
+import axios from "axios";
+import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { OptionCategory, type ProposalOption } from "@prisma/client";
 import {
   Form,
   FormControl,
@@ -20,24 +28,15 @@ import {
   CommandInput,
   CommandItem,
 } from "@/components/ui/command";
+import { CardContent, CardFooter } from "@/components/ui/card";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { toast } from "@/hooks/use-toast";
 import {
   CreateProposalOptionValidator,
   ProposalOptionCreateRequest,
 } from "@/lib/validators/new-proposal-option";
-import { CardContent, CardFooter } from "@/components/ui/card";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Check, ChevronsUpDown } from "lucide-react";
-import { OptionCategory, ProposalOption } from "@prisma/client";
-import Link from "next/link";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { toast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
 import { onMutationError } from "@/utils/mutation-error";
 
 const ProposalOptionForm = () => {

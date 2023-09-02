@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 import { CreateProposalOptionValidator } from "@/lib/validators/new-proposal-option";
 import { ProposalOptionValidator } from "@/lib/validators/update-proposal-option";
 import { z } from "zod";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
+import { errorResponse } from "@/utils/route-error";
 
 export async function PATCH(req: Request) {
   try {
@@ -53,6 +53,16 @@ export async function POST(req: Request) {
         description.slice(1).toLowerCase();
     }
 
+    const existingOption = await db.proposalOption.findFirst({
+      where: {
+        description: formattedDescription.trim(),
+      },
+    });
+
+    if (existingOption) {
+      return new Response("Description already in use", { status: 409 });
+    }
+
     await db.proposalOption.create({
       data: {
         category,
@@ -63,16 +73,6 @@ export async function POST(req: Request) {
 
     return new Response("Success");
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      return new Response("Invalid request data passed", { status: 422 });
-    }
-
-    if (error instanceof PrismaClientKnownRequestError) {
-      if (error.code === "P2002") {
-        return new Response("Description already in use", { status: 409 });
-      }
-    }
-
-    return new Response("Could not create option", { status: 500 });
+    return errorResponse(error, "Could not create option");
   }
 }

@@ -10,7 +10,7 @@ import {
 import { buttonVariants } from "./ui/button";
 import { Menu } from "lucide-react";
 import Link from "next/link";
-import { Session } from "next-auth";
+import type { Session } from "next-auth";
 
 interface HamburgerMenuProps {
   session: Session | null;
@@ -32,12 +32,12 @@ const HamburgerMenu: FC<HamburgerMenuProps> = async ({ session }) => {
           <DropdownMenuLabel>Pages</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Link href="/order" className="h-full w-full">
+            <Link href="/orders" className="h-full w-full">
               Orders
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href="/proposal" className="h-full w-full">
+            <Link href="/proposals" className="h-full w-full">
               Proposals
             </Link>
           </DropdownMenuItem>

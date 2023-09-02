@@ -1,6 +1,6 @@
+import { GithubIcon, LinkedinIcon } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import Text from "@/components/ui/text";
-import { GithubIcon, LinkedinIcon } from "lucide-react";
 
 export default async function Home() {
   return (

@@ -1,7 +1,8 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { OrderCreateValdiator } from "@/lib/validators/new-order";
-import { z } from "zod";
+import { errorResponse } from "@/utils/route-error";
+import { capitalize } from "@/utils/string";
 
 export async function POST(req: Request) {
   try {
@@ -30,10 +31,9 @@ export async function POST(req: Request) {
       return new Response("Order already exists", { status: 409 });
     }
 
-    // capitalize name
     const enduser_name = rawName
       ?.split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .map((word) => capitalize(word))
       .join(" ");
 
     await db.order.create({
@@ -49,10 +49,6 @@ export async function POST(req: Request) {
 
     return new Response("OK", { status: 201 });
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      return new Response("Invalid request data passed", { status: 422 });
-    }
-
-    return new Response("Could not create order", { status: 500 });
+    return errorResponse(error, "Could not create order");
   }
 }

@@ -1,9 +1,20 @@
 "use client";
 
+import axios from "axios";
 import { FC } from "react";
-import { CardContent, CardFooter } from "../ui/card";
-import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@/components/ui/button";
+import { CardContent, CardFooter } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Form,
   FormControl,
@@ -12,30 +23,22 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  OrderUpdateValdiator,
-  OrderUpdateRequest,
-} from "@/lib/validators/update-order";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { Popover } from "@radix-ui/react-popover";
-import { PopoverContent, PopoverTrigger } from "../ui/popover";
-import { cn } from "@/lib/utils";
-import { Check, ChevronsUpDown } from "lucide-react";
+} from "@/components/ui/form";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from "../ui/command";
+} from "@/components/ui/command";
+import {
+  OrderUpdateValdiator,
+  OrderUpdateRequest,
+} from "@/lib/validators/update-order";
+import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
-import { Order } from "@prisma/client";
 import { onMutationError } from "@/utils/mutation-error";
+import type { Order } from "@prisma/client";
 
 interface UpdateOrderFormProps {
   companies: number[];

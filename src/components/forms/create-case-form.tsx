@@ -1,10 +1,13 @@
 "use client";
 
-import "@uploadthing/react/styles.css";
+import axios from "axios";
 import { FC } from "react";
-import { CardContent, CardFooter } from "../ui/card";
-import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { CardContent, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -13,20 +16,17 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
+import { Textarea } from "@/components/ui/textarea";
+import { onMutationError } from "@/utils/mutation-error";
 import {
   CreateCaseRequest,
   CreateCaseValidator,
 } from "@/lib/validators/create-case";
-import { Textarea } from "../ui/textarea";
-import { User } from "next-auth";
-import { onMutationError } from "@/utils/mutation-error";
+import "@uploadthing/react/styles.css";
+import type { User } from "next-auth";
 
 interface CreateCaseFormProps {
   user: User;

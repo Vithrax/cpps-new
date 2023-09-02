@@ -13,8 +13,6 @@ export const ourFileRouter = {
       const session = await getAuthSession();
       if (!session) throw new Error("Unauthorized");
 
-      console.log(req);
-
       // Whatever is returned here is accessible in onUploadComplete as `metadata`
       return { userId: session.user.id };
     })

@@ -8,9 +8,7 @@ export async function POST(req: Request) {
   try {
     const session = await getAuthSession();
 
-    // TODO: swap this after test
-    // if (!session || session.user.permission !== "operator") {
-    if (!session) {
+    if (!session || session.user.permission !== "operator") {
       return new Response("Unauthorized", { status: 401 });
     }
 
@@ -58,7 +56,6 @@ export async function POST(req: Request) {
       };
     });
 
-    // concat arrays
     const options = [...rightOptions, ...leftOptions];
 
     // batch create many
@@ -68,6 +65,6 @@ export async function POST(req: Request) {
 
     return new Response("OK");
   } catch (error) {
-    errorResponse(error, "Could not create proposal");
+    return errorResponse(error, "Could not create proposal");
   }
 }

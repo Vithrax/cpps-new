@@ -1,3 +1,6 @@
+import { redirect } from "next/navigation";
+import { db } from "@/lib/db";
+import { authOptions, getAuthSession } from "@/lib/auth";
 import ProposalCreateForm from "@/components/forms/proposal-create";
 import {
   Card,
@@ -5,9 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { authOptions, getAuthSession } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { redirect } from "next/navigation";
 
 const page = async ({}) => {
   const session = await getAuthSession();
