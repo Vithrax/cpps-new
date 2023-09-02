@@ -11,10 +11,48 @@ This application was build using
 - MySQL
 - Tailwind
 - NextAuth
+- UploadThing
 
-... and many more
+## Features
 
-## Your Background
+- User Authentication
+- Permission based data access
+- Admin panel
+- CRUD operations, limited by permission and data state
+- File upload to private bucket storage
+
+## Roles
+
+Operator:
+
+- Create / Cancel new order
+- Create / Cancel new case
+- Create / Cancel new proposal
+- Complete Case after received reply
+
+Client:
+
+- Reply to case
+- Accept/Reject proposal
+
+Admin:
+
+- Create Companies and proposal options
+- Edit user data and permissions
+
+## Flows examples
+
+O - Operator
+C - Client
+
+Create Order ->
+
+1. (O)Create case -> (O)Add attachments -> (C)Reply to case -> (O)Complete case
+2. (O)Create case -> (O)Cancel Case
+3. (O)Create Proposal -> (C)Reject Proposal (With comment - required)
+4. (O)Create Proposal -> (C)Accept Proposal
+
+## Background
 
 You are working in a medical company that produces a custom, very personalized items for customers that only **they** can wear it.
 Your company is a global-wise provider of such products, and has customers all over the world.
