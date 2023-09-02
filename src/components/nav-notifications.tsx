@@ -3,10 +3,10 @@ import { Bell } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { buttonVariants } from "./ui/button";
 import { Separator } from "./ui/separator";
-import { Label } from "./ui/label";
 import { cn } from "@/lib/utils";
 import { db } from "@/lib/db";
 import { getUserAccessData } from "@/lib/fetch-user-access";
+import { Label } from "./ui/label";
 import type { FC } from "react";
 import type { Session } from "next-auth";
 
