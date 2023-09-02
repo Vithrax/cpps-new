@@ -33,9 +33,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import {
-  UpdateCompanyValidator,
+  CompanyUpdateValidator,
   CompanyUpdateRequest,
-} from "@/lib/validators/update-company";
+} from "@/lib/validators/company-update";
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { onMutationError } from "@/utils/mutation-error";
@@ -49,7 +49,7 @@ const UpdateCompanyForm: FC<UpdateCompanyFormProps> = ({ company }) => {
   const router = useRouter();
 
   const form = useForm<CompanyUpdateRequest>({
-    resolver: zodResolver(UpdateCompanyValidator),
+    resolver: zodResolver(CompanyUpdateValidator),
     defaultValues: {
       brand: company.brand,
       country: company.country,

@@ -1,12 +1,9 @@
-import type { FC } from "react";
 import { Unbounded } from "next/font/google";
 import { cn } from "@/lib/utils";
 
 const font = Unbounded({ weight: "800", subsets: ["latin"] });
 
-interface LogoProps {}
-
-const Logo: FC<LogoProps> = ({}) => {
+const Logo = ({}) => {
   return (
     <div
       className={cn(

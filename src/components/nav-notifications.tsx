@@ -1,13 +1,13 @@
+import Link from "next/link";
+import { Bell } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { buttonVariants } from "./ui/button";
-import { Bell } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { Separator } from "./ui/separator";
-import { db } from "@/lib/db";
-import type { FC } from "react";
-import { getUserAccessData } from "@/lib/fetch-user-access";
 import { Label } from "./ui/label";
-import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { db } from "@/lib/db";
+import { getUserAccessData } from "@/lib/fetch-user-access";
+import type { FC } from "react";
 import type { Session } from "next-auth";
 
 interface NavNotificationsProps {

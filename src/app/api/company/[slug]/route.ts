@@ -1,6 +1,6 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { UpdateCompanyValidator } from "@/lib/validators/update-company";
+import { CompanyUpdateValidator } from "@/lib/validators/company-update";
 import { errorResponse } from "@/utils/route-error";
 
 export async function PATCH(
@@ -16,7 +16,7 @@ export async function PATCH(
     }
 
     const body = await req.json();
-    const { brand, country, name } = UpdateCompanyValidator.parse(body);
+    const { brand, country, name } = CompanyUpdateValidator.parse(body);
 
     const existingCompany = await db.company.findFirst({
       where: {

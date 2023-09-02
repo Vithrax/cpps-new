@@ -1,7 +1,7 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { AddPermissionsValidator } from "@/lib/validators/add-permissions";
-import { RemovePermissionsValidator } from "@/lib/validators/remove-permissions";
+import { PermissionAddValidator } from "@/lib/validators/permission-add";
+import { PermissionRemoveValidator } from "@/lib/validators/permission-remove";
 import { errorResponse } from "@/utils/route-error";
 import { z } from "zod";
 
@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json();
-    const { companyId, userId } = AddPermissionsValidator.parse(body);
+    const { companyId, userId } = PermissionAddValidator.parse(body);
 
     const existingPermission = await db.userAccess.findFirst({
       where: {
@@ -51,7 +51,7 @@ export async function PATCH(req: Request) {
     }
 
     const body = await req.json();
-    const { id } = RemovePermissionsValidator.parse(body);
+    const { id } = PermissionRemoveValidator.parse(body);
 
     const existingPermission = db.userAccess.findFirst({
       where: {

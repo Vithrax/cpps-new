@@ -3,7 +3,7 @@
 import axios from "axios";
 import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
-import { ProposalOptionUpdateRequest } from "@/lib/validators/update-proposal-option";
+import { ProposalOptionUpdateRequest } from "@/lib/validators/proposal-option-create";
 import { ArrowUpDown } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";

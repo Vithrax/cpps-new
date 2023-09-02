@@ -1,18 +1,19 @@
 "use client";
 
+import axios from "axios";
 import type { FC } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { ArrowLeftRight } from "lucide-react";
 import { Separator } from "./ui/separator";
 import { CardContent } from "./ui/card";
 import { ScrollArea } from "./ui/scroll-area";
-import { ArrowLeftRight } from "lucide-react";
 import { Button } from "./ui/button";
-import { UserAccess } from "@prisma/client";
-import { useMutation } from "@tanstack/react-query";
-import { AddPermissionsRequest } from "@/lib/validators/add-permissions";
-import { RemovePermissionsRequest } from "@/lib/validators/remove-permissions";
-import axios, { AxiosError } from "axios";
 import { toast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
+import { onMutationError } from "@/utils/mutation-error";
+import { PermissionAddRequest } from "@/lib/validators/permission-add";
+import { PermissionRemoveRequest } from "@/lib/validators/permission-remove";
+import type { UserAccess } from "@prisma/client";
 
 interface AccessManagerProps {
   companies: number[];
@@ -32,8 +33,8 @@ const AccessManager: FC<AccessManagerProps> = ({
   );
 
   const { mutate: addPermissions } = useMutation({
-    mutationFn: async ({ companyId, userId }: AddPermissionsRequest) => {
-      const payload: AddPermissionsRequest = {
+    mutationFn: async ({ companyId, userId }: PermissionAddRequest) => {
+      const payload: PermissionAddRequest = {
         companyId,
         userId,
       };
@@ -41,22 +42,7 @@ const AccessManager: FC<AccessManagerProps> = ({
       const { data } = await axios.post("/api/user/permission", payload);
       return data;
     },
-    onError: (error) => {
-      if (error instanceof AxiosError) {
-        if (error.response?.status === 409) {
-          return toast({
-            title: "Permission already exists.",
-            variant: "destructive",
-          });
-        }
-
-        return toast({
-          title: "There was an error.",
-          description: "Permission update failed, try again later.",
-          variant: "destructive",
-        });
-      }
-    },
+    onError: onMutationError,
     onSuccess: () => {
       toast({
         description: "Permission has been added!",
@@ -67,28 +53,13 @@ const AccessManager: FC<AccessManagerProps> = ({
   });
 
   const { mutate: removePermissions } = useMutation({
-    mutationFn: async ({ id }: RemovePermissionsRequest) => {
-      const payload: RemovePermissionsRequest = { id };
+    mutationFn: async ({ id }: PermissionRemoveRequest) => {
+      const payload: PermissionRemoveRequest = { id };
 
       const { data } = await axios.patch("/api/user/permission", payload);
       return data;
     },
-    onError: (error) => {
-      if (error instanceof AxiosError) {
-        if (error.response?.status === 404) {
-          return toast({
-            title: "Permission does not exist.",
-            variant: "destructive",
-          });
-        }
-
-        return toast({
-          title: "There was an error.",
-          description: "Permission update failed, try again later.",
-          variant: "destructive",
-        });
-      }
-    },
+    onError: onMutationError,
     onSuccess: () => {
       toast({
         description: "Permission has been removed!",

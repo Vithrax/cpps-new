@@ -1,14 +1,14 @@
 "use client";
 
-import type { FC } from "react";
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { CardFooter } from "./ui/card";
 import { Button } from "./ui/button";
-import { useRouter } from "next/navigation";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 import { toast } from "@/hooks/use-toast";
-import { ProposalReplyRequest } from "@/lib/validators/proposal-action";
+import { ProposalActionRequest } from "@/lib/validators/proposal-action";
 import { onMutationError } from "@/utils/mutation-error";
+import type { FC } from "react";
 import type { Session } from "next-auth";
 import type { Proposal } from "@prisma/client";
 
@@ -33,8 +33,8 @@ const ProposalActionButtons: FC<ProposalActionButtonsProps> = ({
   const viewOnly = !canReply && !canCancel;
 
   const { mutate: replyToProposal, isLoading: isReplying } = useMutation({
-    mutationFn: async ({ action }: ProposalReplyRequest) => {
-      const payload: ProposalReplyRequest = { action };
+    mutationFn: async ({ action }: ProposalActionRequest) => {
+      const payload: ProposalActionRequest = { action };
 
       const { data } = await axios.patch(
         `/api/proposal/${proposal_id}`,

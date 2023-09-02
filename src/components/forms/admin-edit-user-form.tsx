@@ -35,9 +35,9 @@ import {
   CommandItem,
 } from "@/components/ui/command";
 import {
-  AdminAccountUpdateRequest,
-  AdminAccountValidator,
-} from "@/lib/validators/admin-account";
+  AdminUpdateUserRequest,
+  AdminUpdateUserValidator,
+} from "@/lib/validators/admin-update-user";
 import { onMutationError } from "@/utils/mutation-error";
 import { cn } from "@/lib/utils";
 
@@ -50,8 +50,8 @@ const AdminEditUserForm: FC<AdminEditUserFormProps> = ({ user, companies }) => {
   const roles = Object.keys(Role) as Role[];
   const router = useRouter();
 
-  const form = useForm<AdminAccountUpdateRequest>({
-    resolver: zodResolver(AdminAccountValidator),
+  const form = useForm<AdminUpdateUserRequest>({
+    resolver: zodResolver(AdminUpdateUserValidator),
     defaultValues: {
       initials: user.initials!,
       role: user.permission_level,
@@ -60,12 +60,8 @@ const AdminEditUserForm: FC<AdminEditUserFormProps> = ({ user, companies }) => {
   });
 
   const { mutate: updateUser, isLoading } = useMutation({
-    mutationFn: async ({
-      initials,
-      role,
-      company,
-    }: AdminAccountUpdateRequest) => {
-      const payload: AdminAccountUpdateRequest = {
+    mutationFn: async ({ initials, role, company }: AdminUpdateUserRequest) => {
+      const payload: AdminUpdateUserRequest = {
         initials,
         role,
         company,

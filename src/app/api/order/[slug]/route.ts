@@ -1,6 +1,6 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { OrderUpdateValdiator } from "@/lib/validators/update-order";
+import { OrderUpdateValdiator } from "@/lib/validators/order-update";
 import { errorResponse } from "@/utils/route-error";
 
 export async function PATCH(

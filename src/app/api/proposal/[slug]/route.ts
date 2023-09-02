@@ -1,7 +1,7 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { getUserAccessData } from "@/lib/fetch-user-access";
-import { ProposalReplyValidator } from "@/lib/validators/proposal-action";
+import { ProposalActionValidator } from "@/lib/validators/proposal-action";
 import { errorResponse } from "@/utils/route-error";
 
 export async function PATCH(
@@ -10,7 +10,7 @@ export async function PATCH(
 ) {
   try {
     const body = await req.json();
-    const { action } = ProposalReplyValidator.parse(body);
+    const { action } = ProposalActionValidator.parse(body);
 
     const session = await getAuthSession();
     if (!session) {

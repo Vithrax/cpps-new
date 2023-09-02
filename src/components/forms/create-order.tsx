@@ -32,7 +32,7 @@ import {
 import {
   OrderCreateValdiator,
   OrderCreateRequest,
-} from "@/lib/validators/new-order";
+} from "@/lib/validators/order-create";
 import { toast } from "@/hooks/use-toast";
 import { onMutationError } from "@/utils/mutation-error";
 

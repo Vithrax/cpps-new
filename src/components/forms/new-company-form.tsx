@@ -26,9 +26,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import {
-  CreateCompanyValidator,
-  CompanyCreateRequest,
-} from "@/lib/validators/new-company";
+  CompanyCreateValidator,
+  CreateCompanyRequest,
+} from "@/lib/validators/company-new";
 import {
   Command,
   CommandEmpty,
@@ -46,13 +46,13 @@ const NewCompanyForm: FC<NewCompanyFormProps> = () => {
   const brands = Object.keys(Brand) as Brand[];
   const router = useRouter();
 
-  const form = useForm<CompanyCreateRequest>({
-    resolver: zodResolver(CreateCompanyValidator),
+  const form = useForm<CreateCompanyRequest>({
+    resolver: zodResolver(CompanyCreateValidator),
   });
 
   const { mutate: createCompany, isLoading } = useMutation({
-    mutationFn: async ({ id, brand, country, name }: CompanyCreateRequest) => {
-      const payload: CompanyCreateRequest = { id, brand, country, name };
+    mutationFn: async ({ id, brand, country, name }: CreateCompanyRequest) => {
+      const payload: CreateCompanyRequest = { id, brand, country, name };
 
       const { data } = await axios.post("/api/company", payload);
       return data;

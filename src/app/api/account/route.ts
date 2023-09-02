@@ -1,6 +1,6 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { AccountValidator } from "@/lib/validators/account";
+import { InitialsUpdateValidator } from "@/lib/validators/initials-update";
 import { errorResponse } from "@/utils/route-error";
 
 export async function PATCH(req: Request) {
@@ -11,7 +11,7 @@ export async function PATCH(req: Request) {
     }
 
     const body = await req.json();
-    const { initials: rawInitials } = AccountValidator.parse(body);
+    const { initials: rawInitials } = InitialsUpdateValidator.parse(body);
     const initials = rawInitials.toUpperCase();
 
     const existingUserWithInitials = await db.user.findFirst({

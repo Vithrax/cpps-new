@@ -22,9 +22,9 @@ import { toast } from "@/hooks/use-toast";
 import { Textarea } from "@/components/ui/textarea";
 import { onMutationError } from "@/utils/mutation-error";
 import {
-  CreateCaseRequest,
-  CreateCaseValidator,
-} from "@/lib/validators/create-case";
+  CaseCreateRequest,
+  CaseCreateValidator,
+} from "@/lib/validators/case-create";
 import "@uploadthing/react/styles.css";
 import type { User } from "next-auth";
 
@@ -34,13 +34,13 @@ interface CreateCaseFormProps {
 
 const CreateCaseForm: FC<CreateCaseFormProps> = ({ user }) => {
   const router = useRouter();
-  const form = useForm<CreateCaseRequest>({
-    resolver: zodResolver(CreateCaseValidator),
+  const form = useForm<CaseCreateRequest>({
+    resolver: zodResolver(CaseCreateValidator),
   });
 
   const { mutate: createOrder, isLoading } = useMutation({
-    mutationFn: async ({ comment, order_id }: CreateCaseRequest) => {
-      const payload: CreateCaseRequest = {
+    mutationFn: async ({ comment, order_id }: CaseCreateRequest) => {
+      const payload: CaseCreateRequest = {
         comment,
         order_id,
       };

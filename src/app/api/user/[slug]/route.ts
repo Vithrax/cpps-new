@@ -1,6 +1,6 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { AdminAccountValidator } from "@/lib/validators/admin-account";
+import { AdminUpdateUserValidator } from "@/lib/validators/admin-update-user";
 import { errorResponse } from "@/utils/route-error";
 
 export async function PATCH(
@@ -18,7 +18,7 @@ export async function PATCH(
       initials: rawInitials,
       role,
       company,
-    } = AdminAccountValidator.parse(body);
+    } = AdminUpdateUserValidator.parse(body);
     const id = params.slug;
 
     const initials = rawInitials.toUpperCase();

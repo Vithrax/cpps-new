@@ -3,7 +3,7 @@ import type { Brand } from "@prisma/client";
 
 const options = ["bernafon", "multibrand", "oticon", "sonic"] as const;
 
-export const UpdateCompanyValidator = z.object({
+export const CompanyUpdateValidator = z.object({
   name: z
     .string()
     .min(5, { message: "Name must have at least 5 characters" })
@@ -15,4 +15,4 @@ export const UpdateCompanyValidator = z.object({
   brand: z.enum<Brand, typeof options>(options),
 });
 
-export type CompanyUpdateRequest = z.infer<typeof UpdateCompanyValidator>;
+export type CompanyUpdateRequest = z.infer<typeof CompanyUpdateValidator>;

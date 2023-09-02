@@ -1,7 +1,7 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { CreateProposalOptionValidator } from "@/lib/validators/new-proposal-option";
-import { ProposalOptionValidator } from "@/lib/validators/update-proposal-option";
+import { ProposalOptionValidator } from "@/lib/validators/proposal-option-create";
 import { z } from "zod";
 import { errorResponse } from "@/utils/route-error";
 

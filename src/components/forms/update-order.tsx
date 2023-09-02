@@ -34,7 +34,7 @@ import {
 import {
   OrderUpdateValdiator,
   OrderUpdateRequest,
-} from "@/lib/validators/update-order";
+} from "@/lib/validators/order-update";
 import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import { onMutationError } from "@/utils/mutation-error";

@@ -1,9 +1,10 @@
 "use client";
 
-import { Case } from "@prisma/client";
-import { FC, useState } from "react";
-import { Button } from "./ui/button";
+import axios from "axios";
+import { type FC, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { Button } from "./ui/button";
 import {
   Dialog,
   DialogContent,
@@ -14,11 +15,11 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import { Textarea } from "./ui/textarea";
-import { useMutation } from "@tanstack/react-query";
-import axios, { AxiosError } from "axios";
 import { toast } from "@/hooks/use-toast";
-import { ReplyRequest } from "@/lib/validators/reply";
+import { CaseReplyRequest } from "@/lib/validators/case-reply";
+import { onMutationError } from "@/utils/mutation-error";
 import type { Session } from "next-auth";
+import type { Case } from "@prisma/client";
 
 interface CaseActionButtonsProps {
   session: Session;
@@ -40,7 +41,7 @@ const CaseActionButtons: FC<CaseActionButtonsProps> = ({
   const { mutate: sendReply, isLoading: isSendingReply } = useMutation({
     // this time no arguments, we get text from state and id from props
     mutationFn: async () => {
-      const payload: ReplyRequest = {
+      const payload: CaseReplyRequest = {
         replyText,
         case_id: caseData.case_id,
       };
@@ -48,23 +49,7 @@ const CaseActionButtons: FC<CaseActionButtonsProps> = ({
       const { data } = await axios.post("/api/case/reply", payload);
       return data;
     },
-    onError: (error) => {
-      if (error instanceof AxiosError) {
-        if (error.response?.status === 409) {
-          return toast({
-            title: "Order already answered.",
-            description: "This order was already replied to!.",
-            variant: "destructive",
-          });
-        }
-
-        return toast({
-          title: "There was an error.",
-          description: "Reply post failed, try again later.",
-          variant: "destructive",
-        });
-      }
-    },
+    onError: onMutationError,
     onSuccess: () => {
       toast({
         description: "Reply successfully sent.",
@@ -80,23 +65,7 @@ const CaseActionButtons: FC<CaseActionButtonsProps> = ({
       const { data } = await axios.delete(`/api/case/${caseData.case_id}`);
       return data;
     },
-    onError: (error) => {
-      if (error instanceof AxiosError) {
-        if (error.response?.status === 401) {
-          return toast({
-            title: "Not authorized.",
-            description: "You are not authorized to perform this action",
-            variant: "destructive",
-          });
-        }
-
-        return toast({
-          title: "There was an error.",
-          description: "Case status update, try again later.",
-          variant: "destructive",
-        });
-      }
-    },
+    onError: onMutationError,
     onSuccess: () => {
       toast({
         description: "Case has been canceled.",
@@ -112,23 +81,7 @@ const CaseActionButtons: FC<CaseActionButtonsProps> = ({
       const { data } = await axios.patch(`/api/case/${caseData.case_id}`);
       return data;
     },
-    onError: (error) => {
-      if (error instanceof AxiosError) {
-        if (error.response?.status === 401) {
-          return toast({
-            title: "Not authorized.",
-            description: "You are not authorized to perform this action",
-            variant: "destructive",
-          });
-        }
-
-        return toast({
-          title: "There was an error.",
-          description: "Case status update, try again later.",
-          variant: "destructive",
-        });
-      }
-    },
+    onError: onMutationError,
     onSuccess: () => {
       toast({
         description: "Case has been finished.",

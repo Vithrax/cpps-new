@@ -1,8 +1,9 @@
 "use client";
-import { ChevronRight, Home } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ChevronRight, Home } from "lucide-react";
 import { buttonVariants } from "./ui/button";
+import { capitalize } from "@/utils/string";
 
 const Breadcrumbs = () => {
   const pathname = usePathname();
@@ -11,9 +12,9 @@ const Breadcrumbs = () => {
   let link = "";
   const parsedPages = segments.map((segment) => {
     const name = segment
-      .split("-") // split by hyphen
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // capitalize each word
-      .join(" "); // join words with spaces
+      .split("-")
+      .map((word) => capitalize(word))
+      .join(" ");
 
     link = `${link}/${segment}`;
 
@@ -23,7 +24,7 @@ const Breadcrumbs = () => {
     };
   });
 
-  // don't render on the first page
+  // don't render on the main page
   if (segments.length === 0) return;
 
   return (

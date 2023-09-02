@@ -1,6 +1,6 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { CreateCaseValidator } from "@/lib/validators/create-case";
+import { CaseCreateValidator } from "@/lib/validators/case-create";
 import { errorResponse } from "@/utils/route-error";
 import { NextResponse } from "next/server";
 
@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json();
-    const { comment, order_id } = CreateCaseValidator.parse(body);
+    const { comment, order_id } = CaseCreateValidator.parse(body);
 
     const order = await db.order.findFirst({
       where: {

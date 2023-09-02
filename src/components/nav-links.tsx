@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
 import type { FC } from "react";
-import { usePathname } from "next/navigation";
 import type { Session } from "next-auth";
 
 interface NavLinksProps {

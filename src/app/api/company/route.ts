@@ -1,6 +1,6 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { CreateCompanyValidator } from "@/lib/validators/new-company";
+import { CompanyCreateValidator } from "@/lib/validators/company-new";
 import { errorResponse } from "@/utils/route-error";
 
 export async function POST(req: Request) {
@@ -17,7 +17,7 @@ export async function POST(req: Request) {
       country,
       id: idString,
       name,
-    } = CreateCompanyValidator.parse(body);
+    } = CompanyCreateValidator.parse(body);
 
     const id = parseInt(idString);
 

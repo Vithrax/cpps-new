@@ -9,7 +9,7 @@ const roles = [
   "trainer",
 ] as const;
 
-export const AdminAccountValidator = z.object({
+export const AdminUpdateUserValidator = z.object({
   initials: z
     .string()
     .length(4, { message: "Initials must have exactly 4 characters." }),
@@ -17,4 +17,4 @@ export const AdminAccountValidator = z.object({
   company: z.number(),
 });
 
-export type AdminAccountUpdateRequest = z.infer<typeof AdminAccountValidator>;
+export type AdminUpdateUserRequest = z.infer<typeof AdminUpdateUserValidator>;

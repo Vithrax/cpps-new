@@ -1,6 +1,7 @@
 "use client";
 
-import type { FC } from "react";
+import Link from "next/link";
+import { signIn } from "next-auth/react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -10,9 +11,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Link from "next/link";
-import { signIn } from "next-auth/react";
 import { Icons } from "./icons";
+import type { FC } from "react";
 
 interface SignUpProps {}
 

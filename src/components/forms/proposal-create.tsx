@@ -21,9 +21,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import {
-  CreateProposalForm,
-  CreateProposalFormRequest,
-  CreateProposalRequest,
+  ProposalCreateFormValidator,
+  ProposalCreateFormRequest,
+  ProposalCreateRequest,
 } from "@/lib/validators/proposal-create";
 import { toast } from "@/hooks/use-toast";
 import { onMutationError } from "@/utils/mutation-error";
@@ -53,8 +53,8 @@ const ProposalCreateForm: FC<ProposalCreateFormProps> = ({
   proposalOptions,
 }) => {
   const router = useRouter();
-  const form = useForm<CreateProposalFormRequest>({
-    resolver: zodResolver(CreateProposalForm),
+  const form = useForm<ProposalCreateFormRequest>({
+    resolver: zodResolver(ProposalCreateFormValidator),
   });
 
   const [values, setValues] = useState<SelectedOptionData>({
@@ -116,8 +116,8 @@ const ProposalCreateForm: FC<ProposalCreateFormProps> = ({
   }, {} as SortedOptions);
 
   const { mutate: createProposal, isLoading } = useMutation({
-    mutationFn: async ({ orderId }: CreateProposalFormRequest) => {
-      const payload: CreateProposalRequest = {
+    mutationFn: async ({ orderId }: ProposalCreateFormRequest) => {
+      const payload: ProposalCreateRequest = {
         orderId,
         left_options: values.left,
         right_options: values.right,

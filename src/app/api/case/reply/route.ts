@@ -1,6 +1,6 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { ReplyValidator } from "@/lib/validators/reply";
+import { CaseReplyValidator } from "@/lib/validators/case-reply";
 import { errorResponse } from "@/utils/route-error";
 
 export async function POST(req: Request) {
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json();
-    const { case_id, replyText } = ReplyValidator.parse(body);
+    const { case_id, replyText } = CaseReplyValidator.parse(body);
 
     const _case = await db.case.findFirst({
       where: {

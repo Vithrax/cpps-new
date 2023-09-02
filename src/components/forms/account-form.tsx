@@ -30,9 +30,9 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import {
-  AccountUpdateValidator,
-  AccountValidator,
-} from "@/lib/validators/account";
+  InitialsUpdateRequest,
+  InitialsUpdateValidator,
+} from "@/lib/validators/initials-update";
 import { onMutationError } from "@/utils/mutation-error";
 import type { User } from "@prisma/client";
 
@@ -45,8 +45,8 @@ const AccountForm: FC<AccountFormProps> = ({ user }) => {
 
   // Updating account
   const { isLoading: isUpdatingAccount, mutate: updateAccount } = useMutation({
-    mutationFn: async ({ initials }: AccountUpdateValidator) => {
-      const payload: AccountUpdateValidator = {
+    mutationFn: async ({ initials }: InitialsUpdateRequest) => {
+      const payload: InitialsUpdateRequest = {
         initials,
       };
 
@@ -79,8 +79,8 @@ const AccountForm: FC<AccountFormProps> = ({ user }) => {
     },
   });
 
-  const form = useForm<AccountUpdateValidator>({
-    resolver: zodResolver(AccountValidator),
+  const form = useForm<InitialsUpdateRequest>({
+    resolver: zodResolver(InitialsUpdateValidator),
     defaultValues: {
       initials: user.initials!,
     },

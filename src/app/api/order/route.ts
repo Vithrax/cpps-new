@@ -1,6 +1,6 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { OrderCreateValdiator } from "@/lib/validators/new-order";
+import { OrderCreateValdiator } from "@/lib/validators/order-create";
 import { errorResponse } from "@/utils/route-error";
 import { capitalize } from "@/utils/string";
 

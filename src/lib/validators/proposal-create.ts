@@ -1,15 +1,17 @@
 import z from "zod";
 
-export const CreateProposalValidator = z.object({
+export const ProposalCreateValidator = z.object({
   orderId: z.string(),
   left_options: z.array(z.number()),
   right_options: z.array(z.number()),
 });
 
-export const CreateProposalForm = z.object({
+export const ProposalCreateFormValidator = z.object({
   orderId: z.string(),
 });
 
-export type CreateProposalFormRequest = z.infer<typeof CreateProposalForm>;
+export type ProposalCreateFormRequest = z.infer<
+  typeof ProposalCreateFormValidator
+>;
 
-export type CreateProposalRequest = z.infer<typeof CreateProposalValidator>;
+export type ProposalCreateRequest = z.infer<typeof ProposalCreateValidator>;

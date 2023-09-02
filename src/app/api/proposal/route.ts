@@ -1,6 +1,6 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { CreateProposalValidator } from "@/lib/validators/proposal-create";
+import { ProposalCreateValidator } from "@/lib/validators/proposal-create";
 import { errorResponse } from "@/utils/route-error";
 import { DeviceSide } from "@prisma/client";
 
@@ -14,7 +14,7 @@ export async function POST(req: Request) {
 
     const body = await req.json();
     const { left_options, orderId, right_options } =
-      CreateProposalValidator.parse(body);
+      ProposalCreateValidator.parse(body);
 
     const existingOrder = await db.order.findFirst({
       where: {

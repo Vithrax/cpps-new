@@ -3,7 +3,7 @@ import { OurFileRouter } from "@/app/api/uploadthing/core";
 import { Upload } from "lucide-react";
 import { buttonVariants } from "./ui/button";
 import type { FC } from "react";
-import { UploadFileResponse } from "uploadthing/client";
+import type { UploadFileResponse } from "uploadthing/client";
 
 interface UploadZoneProps {
   onUploadError?: (error: Error) => void;
