@@ -127,16 +127,17 @@ model UserAccess {
 
 // Tables
 model Order {
-  order_id          String     @id
-  created_at        DateTime   @default(now())
-  external_id       String?    @db.TinyText
-  first_product_id  String     @db.TinyText
-  second_product_id String?    @db.TinyText
-  enduser_name      String?    @db.TinyText
-  company           Company    @relation(fields: [companyId], references: [id])
-  companyId         Int        @db.MediumInt
-  Proposal          Proposal[]
-  Case              Case[]
+  order_id           String               @id
+  created_at         DateTime             @default(now())
+  external_id        String?              @db.TinyText
+  first_product_id   String               @db.TinyText
+  second_product_id  String?              @db.TinyText
+  enduser_name       String?              @db.TinyText
+  company            Company              @relation(fields: [companyId], references: [id])
+  companyId          Int                  @db.MediumInt
+  Proposal           Proposal[]
+  Case               Case[]
+  EmailNotifications EmailNotifications[]
 
   @@index([companyId])
 }
@@ -202,4 +203,13 @@ model Company {
   Order      Order[]
   User       User[]
   UserAccess UserAccess[]
+}
+
+model EmailNotifications {
+  id             Int      @id @default(autoincrement())
+  order          Order    @relation(fields: [order_id], references: [order_id])
+  order_id       String
+  next_send_date DateTime
+
+  @@index([order_id])
 }

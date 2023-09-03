@@ -13,7 +13,12 @@ const Breadcrumbs = () => {
   const parsedPages = segments.map((segment) => {
     const name = segment
       .split("-")
-      .map((word) => capitalize(word))
+      .map((word) => {
+        if (word.length > 10) {
+          return capitalize(word.slice(0, 10) + "...");
+        }
+        return capitalize(word);
+      })
       .join(" ");
 
     link = `${link}/${segment}`;

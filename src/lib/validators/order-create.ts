@@ -1,7 +1,7 @@
 import z from "zod";
 
 export const OrderCreateValdiator = z.object({
-  order_id: z.string(),
+  order_id: z.string().min(5),
   companyId: z.number(),
   external_id: z.string().optional(),
   enduser_name: z.string().optional(),
