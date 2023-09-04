@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import Link from "next/link";
+import { Link } from "nextjs13-progress";
 import type { LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode, forwardRef } from "react";

@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import { Link } from "nextjs13-progress";
 import { usePathname } from "next/navigation";
 import { ChevronRight, Home } from "lucide-react";
 import { buttonVariants } from "./ui/button";

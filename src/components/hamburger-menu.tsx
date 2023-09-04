@@ -9,7 +9,7 @@ import {
 } from "./ui/dropdown-menu";
 import { buttonVariants } from "./ui/button";
 import { Menu } from "lucide-react";
-import Link from "next/link";
+import { Link } from "nextjs13-progress";
 import { MenuLink } from "@/types/MenuLink";
 import type { Session } from "next-auth";
 

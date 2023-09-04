@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import Link from "next/link";
+import { Link } from "nextjs13-progress";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";

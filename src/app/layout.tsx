@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar";
 import Breadcrumbs from "@/components/breadcrumbs";
 import Providers from "@/components/providers";
 import type { Metadata } from "next";
+import { Next13NProgress } from "nextjs13-progress";
 
 const font = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
           </div>
           <Toaster />
         </Providers>
+        <Next13NProgress color="#05cfcf" options={{}} />
       </body>
     </html>
   );

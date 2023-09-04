@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "nextjs13-progress";
 import { ArrowUpDown } from "lucide-react";
 import { ColumnDef } from "@tanstack/react-table";
 import { Button, buttonVariants } from "@/components/ui/button";

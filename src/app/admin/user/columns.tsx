@@ -5,7 +5,7 @@ import { ArrowUpDown } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { UserColumns } from "@/types/UserColumns";
 import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
+import { Link } from "nextjs13-progress";
 
 export const columns: ColumnDef<UserColumns>[] = [
   {

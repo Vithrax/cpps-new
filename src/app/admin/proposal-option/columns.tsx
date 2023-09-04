@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import Link from "next/link";
+import { Link } from "nextjs13-progress";
 import { ColumnDef } from "@tanstack/react-table";
 import { ProposalOptionUpdateRequest } from "@/lib/validators/proposal-option-create";
 import { ArrowUpDown } from "lucide-react";

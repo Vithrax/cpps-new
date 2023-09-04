@@ -152,15 +152,6 @@ const AccountForm: FC<AccountFormProps> = ({ user }) => {
         <Button form="my-account-update-form" isLoading={isUpdatingAccount}>
           Update
         </Button>
-        <Button
-          variant="destructive"
-          onClick={async () => {
-            const { data } = await axios.post("/api/send/");
-            console.log(data);
-          }}
-        >
-          test email
-        </Button>
       </CardFooter>
     </>
   );

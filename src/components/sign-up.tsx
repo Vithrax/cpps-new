@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "nextjs13-progress";
 import { signIn } from "next-auth/react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "nextjs13-progress";
 import { Bell } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { buttonVariants } from "./ui/button";

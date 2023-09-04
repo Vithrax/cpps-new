@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "nextjs13-progress";
 import { db } from "@/lib/db";
 import { getUserAccessData } from "@/lib/fetch-user-access";
 import { DataTable } from "@/components/table/data-table";

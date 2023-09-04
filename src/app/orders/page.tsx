@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "nextjs13-progress";
 import { Order } from "@prisma/client";
 import { db } from "@/lib/db";
 import { getUserAccessData } from "@/lib/fetch-user-access";

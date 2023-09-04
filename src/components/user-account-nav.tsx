@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "nextjs13-progress";
 import { signOut } from "next-auth/react";
 import {
   DropdownMenu,
