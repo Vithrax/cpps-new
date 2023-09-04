@@ -20,6 +20,7 @@ const SideMenuLink = forwardRef<HTMLAnchorElement, SideMenuLinkProps>(
     return (
       <Link
         ref={ref}
+        // @ts-expect-error N13Progress lib type error
         href={href}
         className={cn(
           "group flex w-full items-center rounded-md border border-transparent px-2 py-0.5  text-muted-foreground",
