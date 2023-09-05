@@ -1,16 +1,16 @@
-import { notFound } from "next/navigation";
-import { db } from "@/lib/db";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import AccessManager from "@/components/access-manager";
-import AdminEditUserForm from "@/components/forms/admin-edit-user-form";
+import { notFound } from 'next/navigation';
+import { db } from '@/lib/db';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import AccessManager from '@/components/access-manager';
+import AdminEditUserForm from '@/components/forms/admin-edit-user-form';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 
 interface pageProps {
   params: {
@@ -61,12 +61,12 @@ const page = async ({ params }: pageProps) => {
       </CardHeader>
       <CardContent>
         <Label>User ID</Label>
-        <Input disabled value={user.id || ""} />
+        <Input disabled value={user.id || ''} />
         <p className="text-sm text-muted-foreground mb-2">
           Read only - server logic
         </p>
         <Label>Email</Label>
-        <Input disabled value={user.email || ""} />
+        <Input disabled value={user.email || ''} />
         <p className="text-sm text-muted-foreground mb-2">
           Read only - server logic
         </p>

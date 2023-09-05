@@ -1,9 +1,9 @@
-import { Link } from "nextjs13-progress";
-import { db } from "@/lib/db";
-import { DataTable } from "@/components/table/data-table";
-import { buttonVariants } from "@/components/ui/button";
-import { CaseColumn } from "@/types/CaseColumns";
-import { columns } from "./columns";
+import { Link } from 'nextjs13-progress';
+import { db } from '@/lib/db';
+import { DataTable } from '@/components/table/data-table';
+import { buttonVariants } from '@/components/ui/button';
+import { CaseColumn } from '@/types/CaseColumns';
+import { columns } from './columns';
 
 async function getData(): Promise<CaseColumn[]> {
   const rawCases = await db.case.findMany({
@@ -49,7 +49,7 @@ export default async function Page() {
   const data = await getData();
 
   return (
-    <div className="sm:container sm:py-10 px-1">
+    <div className="sm:py-10 px-1">
       <DataTable
         columns={columns}
         data={data}

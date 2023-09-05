@@ -1,10 +1,10 @@
-import { Link } from "nextjs13-progress";
-import { db } from "@/lib/db";
-import { getUserAccessData } from "@/lib/fetch-user-access";
-import { DataTable } from "@/components/table/data-table";
-import { buttonVariants } from "@/components/ui/button";
-import { ProposalColumn } from "@/types/ProposalColumns";
-import { columns } from "./columns";
+import { Link } from 'nextjs13-progress';
+import { db } from '@/lib/db';
+import { getUserAccessData } from '@/lib/fetch-user-access';
+import { DataTable } from '@/components/table/data-table';
+import { buttonVariants } from '@/components/ui/button';
+import { ProposalColumn } from '@/types/ProposalColumns';
+import { columns } from './columns';
 
 async function getData(): Promise<ProposalColumn[]> {
   const userAccessList = await getUserAccessData();
@@ -57,7 +57,7 @@ export default async function Page() {
   const data = await getData();
 
   return (
-    <div className="sm:container sm:py-10 px-1">
+    <div className="sm:py-10 px-1">
       <DataTable
         columns={columns}
         data={data}

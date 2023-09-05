@@ -1,19 +1,19 @@
-import "@/styles/globals.css";
-import { Inter } from "next/font/google";
-import { cn } from "@/lib/utils";
-import { Toaster } from "@/components/ui/toaster";
-import Navbar from "@/components/navbar";
-import Breadcrumbs from "@/components/breadcrumbs";
-import Providers from "@/components/providers";
-import type { Metadata } from "next";
-import { Next13NProgress } from "nextjs13-progress";
+import '@/styles/globals.css';
+import { Inter } from 'next/font/google';
+import { cn } from '@/lib/utils';
+import { Toaster } from '@/components/ui/toaster';
+import Navbar from '@/components/navbar';
+import Breadcrumbs from '@/components/breadcrumbs';
+import Providers from '@/components/providers';
+import type { Metadata } from 'next';
+import { Next13NProgress } from 'nextjs13-progress';
 
-const font = Inter({ subsets: ["latin"] });
+const font = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "CPPS | Home",
+  title: 'CPPS | Home',
   description:
-    "Custom production proposal system for direct communication between customers and production",
+    'Custom production proposal system for direct communication between customers and production',
 };
 
 export default function RootLayout({
@@ -23,10 +23,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(font.className, "max-h-screen")}>
+      <body className={cn(font.className, 'max-h-screen')}>
         <Providers>
           <Navbar />
-          <div className="sm:container px-1 pt-16 h-screen">
+          <div className="max-w-7xl mx-auto px-1 pt-16 h-screen">
             <Breadcrumbs />
             <main className="mt-8">{children}</main>
           </div>
