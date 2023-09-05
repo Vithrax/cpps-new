@@ -210,6 +210,7 @@ model EmailNotifications {
   order          Order    @relation(fields: [order_id], references: [order_id])
   order_id       String
   next_send_date DateTime
+  reminders_sent Int      @default(0)
 
   @@index([order_id])
 }
