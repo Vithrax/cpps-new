@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import axios from "axios";
-import type { FC } from "react";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import { CardContent, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import axios from 'axios';
+import type { FC } from 'react';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { CardContent, CardFooter } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -16,17 +16,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { toast } from "@/hooks/use-toast";
-import { Textarea } from "@/components/ui/textarea";
-import { onMutationError } from "@/utils/mutation-error";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { toast } from '@/hooks/use-toast';
+import { Textarea } from '@/components/ui/textarea';
+import { onMutationError } from '@/utils/mutation-error';
 import {
   CaseCreateRequest,
   CaseCreateValidator,
-} from "@/lib/validators/case-create";
-import "@uploadthing/react/styles.css";
-import type { User } from "next-auth";
+} from '@/lib/validators/case-create';
+import type { User } from 'next-auth';
 
 interface CreateCaseFormProps {
   user: User;
@@ -45,17 +44,17 @@ const CreateCaseForm: FC<CreateCaseFormProps> = ({ user }) => {
         order_id,
       };
 
-      const { data } = await axios.post("/api/case/", payload);
+      const { data } = await axios.post('/api/case/', payload);
       return data;
     },
     onError: onMutationError,
     onSuccess: ({ caseId }: { caseId: number }) => {
       toast({
-        description: "Case created successfully",
+        description: 'Case created successfully',
       });
 
       router.refresh();
-      router.push("/cases/" + caseId);
+      router.push('/cases/' + caseId);
     },
   });
 

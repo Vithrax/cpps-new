@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import axios from "axios";
-import { FC, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import OptionSelector from "@/components/option-selector";
-import { CardContent, CardFooter } from "@/components/ui/card";
+import axios from 'axios';
+import { FC, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import OptionSelector from '@/components/option-selector';
+import { CardContent, CardFooter } from '@/components/ui/card';
 import {
   Form,
   FormControl,
@@ -19,21 +19,20 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form';
 import {
   ProposalCreateFormValidator,
   ProposalCreateFormRequest,
   ProposalCreateRequest,
-} from "@/lib/validators/proposal-create";
-import { toast } from "@/hooks/use-toast";
-import { onMutationError } from "@/utils/mutation-error";
-import "@uploadthing/react/styles.css";
-import type { User } from "next-auth";
-import type { ProposalOption } from "@prisma/client";
+} from '@/lib/validators/proposal-create';
+import { toast } from '@/hooks/use-toast';
+import { onMutationError } from '@/utils/mutation-error';
+import type { User } from 'next-auth';
+import type { ProposalOption } from '@prisma/client';
 
 interface ProposalCreateFormProps {
   user: User;
-  proposalOptions: Omit<ProposalOption, "active">[];
+  proposalOptions: Omit<ProposalOption, 'active'>[];
 }
 
 type SortedOptions = {
@@ -62,9 +61,9 @@ const ProposalCreateForm: FC<ProposalCreateFormProps> = ({
     right: [],
   });
 
-  const addOption = (n: number, side: "left" | "right") => {
+  const addOption = (n: number, side: 'left' | 'right') => {
     setValues((prev) => {
-      if (side === "left") {
+      if (side === 'left') {
         return {
           ...prev,
           left: [...prev.left, n],
@@ -78,9 +77,9 @@ const ProposalCreateForm: FC<ProposalCreateFormProps> = ({
     });
   };
 
-  const removeOption = (n: number, side: "left" | "right") => {
+  const removeOption = (n: number, side: 'left' | 'right') => {
     setValues((prev) => {
-      if (side === "left") {
+      if (side === 'left') {
         return {
           ...prev,
           left: prev.left.filter((v) => v !== n),
@@ -123,16 +122,16 @@ const ProposalCreateForm: FC<ProposalCreateFormProps> = ({
         right_options: values.right,
       };
 
-      const { data } = await axios.post("/api/proposal/", payload);
+      const { data } = await axios.post('/api/proposal/', payload);
       return data;
     },
     onError: onMutationError,
     onSuccess: () => {
       toast({
-        description: "Case created successfully",
+        description: 'Case created successfully',
       });
 
-      router.push("/proposals/");
+      router.push('/proposals/');
       router.refresh();
     },
   });
