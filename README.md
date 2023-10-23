@@ -10,7 +10,7 @@
 
 ## 🔍 Table of Contents
 
-- [� Table of Contents](#-table-of-contents)
+- [🔍 Table of Contents](#-table-of-contents)
 - [💻 Stack](#-stack)
 - [📝 Project Summary](#-project-summary)
 - [⚙️ Setting Up](#️-setting-up)
@@ -23,7 +23,6 @@
   - [UPLOADTHING_APP_ID](#uploadthing_app_id)
 - [🚀 Run Locally](#-run-locally)
 - [🙌 Contributors](#-contributors)
-- [📄 License](#-license)
 
 ## 💻 Stack
 
@@ -141,7 +140,3 @@ yarn dev
           30 contributions
         </a>
       </td></table>
-
-## 📄 License
-
-[**Add Your License**](https://choosealicense.com)
