@@ -1,10 +1,4 @@
 <p align="center">
-<a href=https://github.com/Vithrax/cpps-new target="_blank">
-<img src='/placeholder.jpg' width="100%" alt="Banner" />
-</a>
-</p>
-
-<p align="center">
 <img src="https://img.shields.io/github/contributors/Vithrax/cpps-new" alt="GitHub contributors" />
 <img src="https://img.shields.io/github/discussions/Vithrax/cpps-new" alt="GitHub discussions" />
 <img src="https://img.shields.io/github/issues/Vithrax/cpps-new" alt="GitHub issues" />
@@ -16,17 +10,20 @@
 
 ## 🔍 Table of Contents
 
-- [💻 Stack](#stack)
-
-- [📝 Project Summary](#project-summary)
-
-- [⚙️ Setting Up](#setting-up)
-
-- [🚀 Run Locally](#run-locally)
-
-- [🙌 Contributors](#contributors)
-
-- [📄 License](#license)
+- [� Table of Contents](#-table-of-contents)
+- [💻 Stack](#-stack)
+- [📝 Project Summary](#-project-summary)
+- [⚙️ Setting Up](#️-setting-up)
+  - [DATABASE_URL](#database_url)
+  - [NEXTAUTH_SECRET](#nextauth_secret)
+  - [NEXTAUTH_URL](#nextauth_url)
+  - [GOOGLE_CLIENT_ID](#google_client_id)
+  - [GOOGLE_CLIENT_SECRET](#google_client_secret)
+  - [UPLOADTHING_SECRET](#uploadthing_secret)
+  - [UPLOADTHING_APP_ID](#uploadthing_app_id)
+- [🚀 Run Locally](#-run-locally)
+- [🙌 Contributors](#-contributors)
+- [📄 License](#-license)
 
 ## 💻 Stack
 
